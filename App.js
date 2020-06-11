@@ -15,7 +15,7 @@ import { listUsers } from "./src/graphql/queries";
 
 import { StyleSheet, Text, TextInput, Button, View } from "react-native";
 
-const initialState = { name: "", email: "" };
+const initialState = { name: "", email: "", password: ""};
 
 const App = () => {
   const [formState, setFormState] = useState(initialState);
@@ -42,11 +42,12 @@ const App = () => {
   async function addUser() {
     try {
       const user = { ...formState };
+      console.log(user)
       setUsers([...users, user]);
       setFormState(initialState);
-      await API.graphql(graphqlOperation(createUser));
+      await API.graphql(graphqlOperation(createUser, {input: user}));
     } catch (err) {
-      console.log("error creating todo:", err);
+      console.log("error creating user:", err);
     }
   }
 
@@ -64,12 +65,19 @@ const App = () => {
         value={formState.email}
         placeholder="Email"
       />
+      <TextInput
+        onChangeText={(val) => setInput("password", val)}
+        style={styles.input}
+        value={formState.password}
+        placeholder="Password"
+      />
       <Button title="Sign Up" onPress={addUser} />
       {
       users.map((user, index) => (
         <View key={user.id ? user.id : index} style={styles.user}>
-          <Text style={styles.userName}>{user.title}</Text>
-          {/* <Text>{user.email}</Text> */}
+          <Text style={styles.userName}>{user.name}</Text>
+          <Text>{user.email}</Text>
+          <Text>{user.password}</Text>
         </View>
         ))
       }
