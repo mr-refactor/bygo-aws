@@ -44,7 +44,7 @@ const App = () => {
       const user = { ...formState };
       setUsers([...users, user]);
       setFormState(initialState);
-      await API.graphql(graphqlOperation(createUser, { input: user }));
+      await API.graphql(graphqlOperation(createUser));
     } catch (err) {
       console.log("error creating todo:", err);
     }
