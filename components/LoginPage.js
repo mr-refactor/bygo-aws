@@ -46,7 +46,7 @@ const LoginPage = ({ toggleLoggedIn }) => {
       const cu = cuData.data.listUsers.items[0]
       setCurrentUser(cu);
       toggleLoggedIn()
-      setFormState(InitialState)
+      setFormState(initialState)
     } catch (err) {
       console.log("error finding user:", err);
     }

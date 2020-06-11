@@ -1,7 +1,7 @@
 import React from "react";
-import {View} from "react-native";
 
 // Components
+import MyListsPage from './MyListsPage'
 
 // Navigation
 import { NavigationContainer } from "@react-navigation/native";
@@ -11,9 +11,13 @@ const Stack = createStackNavigator();
 
 const NavContainer = () => {
   return (
-    <View>
-
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen 
+        name="My Lists" component={MyListsPage}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
