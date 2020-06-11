@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-bygo-dev-110030-authRole",
+            "UnauthRoleArn": "arn:aws:iam::672967631340:role/amplify-bygo-dev-110030-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::672967631340:role/amplify-bygo-dev-110030-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "amplify-bygo-dev-110030-deployment",
+            "UnauthRoleName": "amplify-bygo-dev-110030-unauthRole",
+            "StackName": "amplify-bygo-dev-110030",
+            "StackId": "arn:aws:cloudformation:us-east-2:672967631340:stack/amplify-bygo-dev-110030/ae5cd850-abfc-11ea-b9a0-0653eeca5e60",
+            "AmplifyAppId": "d37xrmd75lhdf6"
+        },
+        "categories": {
+            "auth": {
+                "bygo4c1b1e1c": {}
+            }
+        }
+    }
+}

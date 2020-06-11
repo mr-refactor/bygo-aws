@@ -1,0 +1,24 @@
+type User @model {
+  id: ID!
+  name: String
+  email: String!
+  password: String!
+  lists: [List] @connection(keyName: "byUser", fields: ["id"])
+}
+
+type List @model @key(name: "byUser", fields: ["userID"]) {
+  id: ID!
+  title: String!
+  userID: ID!
+  user: User @connection(fields: ["userID"])
+  items: [Item] @connection(keyName: "byList", fields: ["id"])
+}
+
+type Item @model @key(name: "byList", fields: ["listID", "name"]) {
+  id: ID!
+  listID: ID!
+  list: List @connection(fields: ["listID"])
+  name: String!
+  category: String
+  checked: Boolean
+}
