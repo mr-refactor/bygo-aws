@@ -25,13 +25,13 @@ import NavigationContainer from "./components/NavContainer";
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
-  function toggleLogIn() {
+  function toggleLoggedIn() {
     setLoggedIn((prev) => !prev);
   }
 
   return (
     <RecoilRoot>
-      {loggedIn ? <NavigationContainer /> : <LoginPage />}
+      {loggedIn ? <NavigationContainer /> : <LoginPage toggleLoggedIn={toggleLoggedIn} />}
     </RecoilRoot>
   );
 };

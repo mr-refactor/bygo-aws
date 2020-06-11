@@ -2,52 +2,55 @@ import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Button } from "react-native";
 
 // AWS
-import { API, graphqlOperation} from "aws-amplify";
-
+import { API, graphqlOperation } from "aws-amplify";
 
 // GRAPH QL
 import { createUser } from "../src/graphql/mutations";
 import { listUsers } from "../src/graphql/queries";
 
 // RECOIL
-import {currentUserState} from '../atoms/currentUserState'
-import {useRecoilState} from 'recoil'
+import { currentUserState } from "../atoms/currentUserState";
+import { useRecoilState } from "recoil";
 
 const initialState = { email: "", password: "" };
 
-const LoginPage = () => {
+const LoginPage = ({ toggleLoggedIn }) => {
   const [formState, setFormState] = useState(initialState);
-  const [currentUser, setCurrentUsers] = useState([]);
-
-  // useEffect(() => {
-  //   fetchUsers();
-  // }, []);
+  const [currentUser, setCurrentUser] = useRecoilState(currentUserState);
 
   function setInput(key, value) {
     setFormState({ ...formState, [key]: value });
   }
 
-  // async function fetchUsers() {
-  //   try {
-  //     const userData = await API.graphql(graphqlOperation(listUsers));
-  //     const users = userData.data.listUsers.items;
-  //     setUsers(users);
-  //   } catch (err) {
-  //     console.log("error fetching users", err);
-  //   }
-  // }
+  async function addUser() {
+    try {
+      const user = { ...formState };
+      const cuData = await API.graphql(
+        graphqlOperation(createUser, { input: user })
+      );
+      const cu = cuData.data.createUser;
+      setCurrentUser(cu);
+      toggleLoggedIn();
+      setFormState(initialState);
+    } catch (err) {
+      console.log("error creating user:", err);
+    }
+  }
 
-  // async function addUser() {
-  //   try {
-  //     const user = { ...formState };
-  //     console.log(user);
-  //     setUsers([...users, user]);
-  //     setFormState(initialState);
-  //     await API.graphql(graphqlOperation(createUser, { input: user }));
-  //   } catch (err) {
-  //     console.log("error creating user:", err);
-  //   }
-  // }
+  async function signIn() {
+    try {
+      const user = { ...formState };
+      const cuData = await API.graphql(
+        graphqlOperation(listUsers, { filter: {email: {eq: user.email}} })
+      );
+      const cu = cuData.data.listUsers.items[0]
+      setCurrentUser(cu);
+      toggleLoggedIn()
+      setFormState(InitialState)
+    } catch (err) {
+      console.log("error finding user:", err);
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -70,7 +73,8 @@ const LoginPage = () => {
         value={formState.password}
         placeholder="Password"
       />
-      <Button title="Sign Up" onPress={() => console.log('adding user')} />
+      <Button title="Sign In" onPress={signIn} />
+      <Button title="Sign Up" onPress={addUser} />
       {/* {users.map((user, index) => (
         <View key={user.id ? user.id : index} style={styles.user}>
           <Text style={styles.userName}>{user.name}</Text>
@@ -89,3 +93,17 @@ const styles = StyleSheet.create({
 });
 
 export default LoginPage;
+
+// useEffect(() => {
+//   fetchUsers();
+// }, []);
+
+// async function fetchUsers() {
+//   try {
+//     const userData = await API.graphql(graphqlOperation(listUsers));
+//     const users = userData.data.listUsers.items;
+//     setUsers(users);
+//   } catch (err) {
+//     console.log("error fetching users", err);
+//   }
+// }
