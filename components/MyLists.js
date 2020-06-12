@@ -29,11 +29,11 @@ const MyLists = ({ navigation }) => {
     return (
       <TouchableOpacity
         style={styles.li}
-        onPress={() =>
-          navigation.navigate("List", {
-            list: item,
-          })
-        }
+        // onPress={() =>
+        //   navigation.navigate("List", {
+        //     list: item,
+        //   })
+        // }
       >
         <TouchableOpacity onPress={() => delList(item.id)}>
           <Text style={styles.delButton}>X</Text>
