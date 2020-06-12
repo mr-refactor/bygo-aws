@@ -9,11 +9,11 @@ import {
 
 // GraphQL
 import { API, graphqlOperation } from "aws-amplify";
-import { createList } from "../src/graphql/mutations";
+import { createItem } from "../src/graphql/mutations";
 
 // Recoil
-import { listsState } from "../atoms/listsState";
-import { currentUserState } from "../atoms/currentUserState";
+import { currentListState } from "../atoms/currentListState";
+import { itemsState } from '../atoms/itemsState';
 import { useRecoilState, useRecoilValue } from "recoil";
 
 // EXPO
@@ -21,53 +21,55 @@ import { BlurView } from "expo-blur";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 
-const AddListModal = ({ closeModal }) => {
-  const [title, setTitle] = useState("");
-  const currentUser = useRecoilValue(currentUserState);
-  const [lists, setLists] = useRecoilState(listsState);
+const AddItemModal = ({ closeModal }) => {
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("Other");
+  const [items, setItems] = useRecoilState(itemsState)
+  const currentList = useRecoilValue(currentListState);
 
-  async function addList() {
+  async function addItem() {
     try {
       const data = await API.graphql(
-        graphqlOperation(createList, {
-          input: { title, userID: currentUser.id },
+        graphqlOperation(createItem, {
+          input: { name, category, checked: false, listID: currentList.id},
         })
       );
-      const newList = {
-        id: data.data.createList.id,
-        title: data.data.createList.title,
-        userID: data.data.createList.user.id,
-        items: [],
+      const newItem = {
+        id: data.data.createItem.id,
+        category: data.data.createItem.category,
+        checked: data.data.createItem.checked,
+        name: data.data.createItem.name,
+        listID: data.data.createItem.list.id,
       };
-      setLists((prev) => [...prev, newList]);
-      setTitle("");
+      setItems((prev) => [...prev, newItem]);
+      setName("");
     } catch (err) {
       console.log("error creating user:", err);
     }
   }
 
   return (
-    <BlurView intensity={70} style={styles.modalContainer}>
+    <BlurView intensity={85} style={styles.modalContainer}>
       <View style={styles.modal}>
         <TouchableOpacity style={styles.cancel} onPress={closeModal}>
           <Feather name="x" size={24} color="white" />
         </TouchableOpacity>
-        <Text style={styles.header}>New List</Text>
+        <Text style={styles.header}>New Item</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(val) => setTitle(val)}
-          defaultValue={title}
-          placeholder="Enter your list title"
+          onChangeText={(val) => setName(val)}
+          defaultValue={name}
+          placeholder="Enter your item name"
         />
         <TouchableOpacity
           style={styles.addButton}
           onPress={() => {
-            addList();
-            closeModal();
+            addItem()
+            closeModal()
           }}
         >
           <AntDesign name="plus" size={24} color="white" />
-          <Text style={styles.buttonText}>Add List</Text>
+          <Text style={styles.buttonText}>Add Item</Text>
         </TouchableOpacity>
       </View>
     </BlurView>
@@ -127,4 +129,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddListModal;
+export default AddItemModal;

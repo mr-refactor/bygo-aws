@@ -18,9 +18,6 @@ import { currentListState } from "../atoms/currentListState";
 import { itemsState } from "../atoms/itemsState";
 import { useRecoilState, useRecoilValue } from "recoil";
 
-// Expo Icons
-import { AntDesign } from "@expo/vector-icons";
-
 // Helpers
 import { removeItemAtIndex } from "../services/helpers";
 /*-------------------------------------------------------------------------*/
@@ -61,7 +58,6 @@ const ListItems = () => {
   }
 
   return (
-    <View style={styles.container}>
       <SafeAreaView style={styles.listContainer}>
         <FlatList
           data={items}
@@ -69,18 +65,10 @@ const ListItems = () => {
           keyExtractor={(item) => item.id}
         />
       </SafeAreaView>
-      <TouchableOpacity style={styles.addList}>
-        <AntDesign name="plus" size={35} color="white" />
-      </TouchableOpacity>
-    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    position: "relative",
-    flex: 1,
-  },
   listContainer: {
     flex: 5,
   },
@@ -115,18 +103,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "green",
   },
-  addList: {
-    position: "absolute",
-    bottom: 15,
-    right: 15,
-    display: 'flex',
-    justifyContent: "center",
-    alignItems: "center",
-    width: 60,
-    height: 60,
-    borderRadius: 100,
-    backgroundColor: "green"
-  }
 });
 
 export default ListItems;
