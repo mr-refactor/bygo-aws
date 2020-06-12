@@ -2,6 +2,7 @@ import React from "react";
 
 // Components
 import MyListsPage from './MyListsPage'
+import ViewList from './ViewList'
 
 // Navigation
 import { NavigationContainer } from "@react-navigation/native";
@@ -15,6 +16,10 @@ const NavContainer = () => {
       <Stack.Navigator>
         <Stack.Screen 
         name="My Lists" component={MyListsPage}
+        />
+        <Stack.Screen 
+        name="View List" component={ViewList}
+        options={({ route }) => ({ title: route.params.list.title })}
         />
       </Stack.Navigator>
     </NavigationContainer>
