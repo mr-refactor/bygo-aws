@@ -13,7 +13,7 @@ import { deleteItem } from "../src/graphql/mutations";
 
 // Recoil
 
-import { listsState } from "../atoms/listsState";
+import { currentListState } from "../atoms/currentListState";
 import { itemsState } from "../atoms/itemsState";
 import { useRecoilState, useRecoilValue } from "recoil";
 
@@ -22,12 +22,12 @@ import {removeItemAtIndex} from '../services/helpers'
 /*-------------------------------------------------------------------------*/
 
 const ListItems = () => {
-  const [lists, setLists] = useRecoilState(listsState)
+  const currentList = useRecoilValue(currentListState)
   const [items, setItems] = useRecoilState(itemsState)
 
   async function delItem(id) {
     try {
-      const response = await API.graphql(graphqlOperation(deleteItem, { input: { id } }));
+      await API.graphql(graphqlOperation(deleteItem, { input: { id } }));
       const index = items.findIndex(i => i.id === id)
       setItems(prev => removeItemAtIndex(prev, index))
     } catch (err) {
