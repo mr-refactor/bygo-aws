@@ -8,6 +8,7 @@ import { getList } from "../src/graphql/queries";
 // Recoil
 
 import { currentListState } from "../atoms/currentListState";
+import { itemsState } from "../atoms/itemsState";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 // Components
@@ -20,21 +21,23 @@ import ListItems from "./ListItems";
 
 const ViewList = ({ route }) => {
   const { list } = route.params;
-  const [currentList, setCurrentList] = useRecoilState(currentListState)
-  const [items, setItems] = useRecoilState(itemsState)
+  const [currentList, setCurrentList] = useRecoilState(currentListState);
+  const [items, setItems] = useRecoilState(itemsState);
 
-  useEffect(async () => {
-    try {
-      console.log(list.id)
-      const listData = await API.graphql(
-        graphqlOperation(getList, { id: list.id })
-      );
-      const updatedList = listData.data.getList
-      setCurrentList(updatedList)
-      setItems(updatedList.items.items)
-    } catch (err) {
-      console.log("error creating user:", err);
+  useEffect(() => {
+    async function fetchLists() {
+      try {
+        const listData = await API.graphql(
+          graphqlOperation(getList, { id: list.id })
+        );
+        const updatedList = listData.data.getList;
+        setCurrentList(updatedList);
+        setItems(updatedList.items.items);
+      } catch (err) {
+        console.log("error creating user:", err);
+      }
     }
+    fetchLists();
   }, []);
 
   return (
