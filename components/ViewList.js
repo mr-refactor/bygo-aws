@@ -14,6 +14,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 // Components
 import ListItems from "./ListItems";
 import AddItemModal from "./AddItemModal";
+import MyBagIcon from "./MyBagIcon";
 
 // Expo Icons
 import { AntDesign } from "@expo/vector-icons";
@@ -23,7 +24,7 @@ import { AntDesign } from "@expo/vector-icons";
 
 /*-------------------------------------------------------------------------*/
 
-const ViewList = ({ route }) => {
+const ViewList = ({ route, navigation }) => {
   const { list } = route.params;
   const [currentList, setCurrentList] = useRecoilState(currentListState);
   const [items, setItems] = useRecoilState(itemsState);
@@ -55,6 +56,7 @@ const ViewList = ({ route }) => {
       <TouchableOpacity style={styles.addList} onPress={toggleAddItemModal}>
         <AntDesign name="plus" size={35} color="white" />
       </TouchableOpacity>
+      <MyBagIcon navigation={navigation} />
       {showModal ? <AddItemModal closeModal={toggleAddItemModal}/> : null}
     </View>
   );

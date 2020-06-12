@@ -2,6 +2,7 @@ import React from "react";
 
 // Components
 import MyListsPage from './MyListsPage'
+import MyBagPage from './MyBagPage'
 import ViewList from './ViewList'
 
 // Navigation
@@ -23,6 +24,9 @@ const NavContainer = () => {
         <Stack.Screen 
         name="View List" component={ViewList}
         options={({ route }) => ({ title: route.params.list.title })}
+        />
+        <Stack.Screen 
+        name="My Bag" component={MyBagPage}
         />
       </Stack.Navigator>
     </NavigationContainer>

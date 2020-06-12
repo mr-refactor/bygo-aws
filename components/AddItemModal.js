@@ -43,6 +43,7 @@ const AddItemModal = ({ closeModal }) => {
       };
       setItems((prev) => [...prev, newItem]);
       setName("");
+      closeModal()
     } catch (err) {
       console.log("error creating user:", err);
     }
@@ -65,7 +66,6 @@ const AddItemModal = ({ closeModal }) => {
           style={styles.addButton}
           onPress={() => {
             addItem()
-            closeModal()
           }}
         >
           <AntDesign name="plus" size={24} color="white" />
