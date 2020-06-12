@@ -1,44 +1,24 @@
 import React, { useEffect } from "react";
 import { Text, Button, StyleSheet, View } from "react-native";
 
-// Graph QL
-import { API, graphqlOperation } from "aws-amplify";
-
-// import { createUser } from "../src/graphql/mutations";
-import { listLists } from "../src/graphql/queries";
-
-
 // RECOIL
 import { listsState } from "../atoms/listsState";
 import { currentUserState } from "../atoms/currentUserState";
 import { useRecoilState, useRecoilValue } from "recoil";
 
+// COMPONENTS
+import MyLists from './MyLists'
+
 const MyListsPage = ({ navigation }) => {
   const currentUser = useRecoilValue(currentUserState);
   const [lists, setLists] = useRecoilState(listsState);
 
-  useEffect(
-  async () => {
-    try {
-      const userID = currentUser.id;
-      const listsData = await API.graphql(
-        graphqlOperation(listLists, { filter: {userID: {eq: userID}} })
-      );
-      const ld = listsData.data.listLists.items
-      setLists(ld)
-    } catch (err) {
-      console.log("error finding user:", err);
-    }
-  }, []
-  )
+  useEffect(() => setLists(currentUser.lists.items), [])
 
   return (
     <View style={styles.container}>
       <Button title="Add List" onPress={() => console.log("adding list")} />
-      {/* <MyLists lists={lists} navigation={navigation} handleDel={() => console.log('deleting list')}></MyLists> */}
-      {lists.map((l) => (
-        <Text>{l.title}</Text>
-      ))}
+      <MyLists navigation={navigation} ></MyLists>
     </View>
   );
 };
@@ -52,8 +32,5 @@ const styles = StyleSheet.create({
   },
 });
 
-function removeItemAtIndex(arr, index) {
-  return [...arr.slice(0, index), ...arr.slice(index + 1)];
-}
 
 export default MyListsPage;

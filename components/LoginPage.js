@@ -6,7 +6,7 @@ import { API, graphqlOperation } from "aws-amplify";
 
 // GRAPH QL
 import { createUser } from "../src/graphql/mutations";
-import { listUsers } from "../src/graphql/queries";
+import { fetchUsers } from "../src/custom/queries";
 
 // RECOIL
 import { currentUserState } from "../atoms/currentUserState";
@@ -41,8 +41,9 @@ const LoginPage = ({ toggleLoggedIn }) => {
     try {
       const user = { ...formState };
       const cuData = await API.graphql(
-        graphqlOperation(listUsers, { filter: {email: {eq: user.email}} })
+        graphqlOperation(fetchUsers, { filter: {email: {eq: user.email}} })
       );
+      console.log(cuData)
       const cu = cuData.data.listUsers.items[0]
       setCurrentUser(cu);
       toggleLoggedIn()
