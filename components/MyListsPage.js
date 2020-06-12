@@ -8,6 +8,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 
 // COMPONENTS
 import MyLists from './MyLists'
+import AddListModal from './AddListModal'
 
 const MyListsPage = ({ navigation }) => {
   const currentUser = useRecoilValue(currentUserState);
@@ -24,7 +25,7 @@ const MyListsPage = ({ navigation }) => {
     <View style={styles.container}>
       <Button title="Add List" onPress={toggleAddListModal} />
       <MyLists navigation={navigation} ></MyLists>
-      {showModal ? <View style={styles.modalContainer}></View> : null}
+      {showModal ? <AddListModal />: null}
     </View>
   );
 };
