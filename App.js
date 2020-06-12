@@ -22,6 +22,8 @@ import { RecoilRoot } from "recoil";
 import LoginPage from "./components/LoginPage";
 import NavigationContainer from "./components/NavContainer";
 
+/*-------------------------------------------------------------------------*/
+
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 

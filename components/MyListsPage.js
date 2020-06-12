@@ -10,6 +10,8 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import MyLists from './MyLists'
 import AddListModal from './AddListModal'
 
+/*-------------------------------------------------------------------------*/
+
 const MyListsPage = ({ navigation }) => {
   const currentUser = useRecoilValue(currentUserState);
   const [lists, setLists] = useRecoilState(listsState);

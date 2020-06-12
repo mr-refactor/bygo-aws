@@ -10,6 +10,8 @@ import { useRecoilState, useRecoilValue } from "recoil";
 // Components
 import ListItems from './ListItems'
 
+/*-------------------------------------------------------------------------*/
+
 const ViewList = ({ route }) => {
   const {list} = route.params
   const [lists, setLists] = useRecoilState(listsState);

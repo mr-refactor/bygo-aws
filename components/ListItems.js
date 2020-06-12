@@ -7,21 +7,39 @@ import {
   SafeAreaView,
 } from "react-native";
 
+// GRAPH QL
+import { API, graphqlOperation } from "aws-amplify";
+import { deleteItem } from "../src/graphql/mutations";
+
 // Recoil
 
 import { listsState } from "../atoms/listsState";
 import { itemsState } from "../atoms/itemsState";
 import { useRecoilState, useRecoilValue } from "recoil";
 
+// Helpers
+import {removeItemAtIndex} from '../services/helpers'
+/*-------------------------------------------------------------------------*/
+
 const ListItems = () => {
   const [lists, setLists] = useRecoilState(listsState)
   const [items, setItems] = useRecoilState(itemsState)
+
+  async function delItem(id) {
+    try {
+      await API.graphql(graphqlOperation(deleteItem, { input: { id } }));
+      let index = items.findIndex(i => i.id === id)
+      setItems(prev => removeItemAtIndex(prev, index))
+    } catch (err) {
+      console.log("error deleting list:", err);
+    }
+  }
 
   function renderItem({ item }) {
     return (
       <TouchableOpacity style={styles.li}>
         <TouchableOpacity>
-          <Text style={styles.delButton} onPress={() => console.log('deleting item')}>
+          <Text style={styles.delButton} onPress={() => delItem(item.id)}>
             X
           </Text>
         </TouchableOpacity>
