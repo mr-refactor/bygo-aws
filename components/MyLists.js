@@ -1,11 +1,29 @@
 import React from "react";
 import { TouchableOpacity, StyleSheet, Text, FlatList } from "react-native";
 
+// GRAPH QL
+import { API, graphqlOperation } from "aws-amplify";
+import { deleteList } from "../src/graphql/mutations";
+
+// RECOIL
 import { listsState } from "../atoms/listsState";
-import {useRecoilValue} from 'recoil'
+import { useRecoilState } from "recoil";
+
+// Helpers
+import {removeItemAtIndex} from '../services/helpers'
 
 const MyLists = ({ navigation }) => {
-  const lists = useRecoilValue(listsState)
+  const [lists, setLists] = useRecoilState(listsState);
+
+  async function delList(id) {
+    try {
+      await API.graphql(graphqlOperation(deleteList, { input: { id } }));
+      let index = lists.findIndex(l => l.id === id)
+      setLists(prev => removeItemAtIndex(prev, index))
+    } catch (err) {
+      console.log("error deleting list:", err);
+    }
+  }
 
   function renderItem({ item }) {
     return (
@@ -17,7 +35,7 @@ const MyLists = ({ navigation }) => {
           })
         }
       >
-        <TouchableOpacity onPress={() => console.log('deleting item')}>
+        <TouchableOpacity onPress={() => delList(item.id)}>
           <Text style={styles.delButton}>X</Text>
         </TouchableOpacity>
         <Text style={styles.text}>{item.title}</Text>
@@ -36,8 +54,7 @@ const MyLists = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-  },
+  container: {},
   li: {
     flex: 1,
     flexDirection: "row",

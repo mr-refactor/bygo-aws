@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Button } from "react-native";
 
-// AWS
-import { API, graphqlOperation } from "aws-amplify";
-
 // GRAPH QL
+import { API, graphqlOperation } from "aws-amplify";
 import { createUser } from "../src/graphql/mutations";
 import { fetchUsers } from "../src/custom/queries";
 
