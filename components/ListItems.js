@@ -27,8 +27,8 @@ const ListItems = () => {
 
   async function delItem(id) {
     try {
-      await API.graphql(graphqlOperation(deleteItem, { input: { id } }));
-      let index = items.findIndex(i => i.id === id)
+      const response = await API.graphql(graphqlOperation(deleteItem, { input: { id } }));
+      const index = items.findIndex(i => i.id === id)
       setItems(prev => removeItemAtIndex(prev, index))
     } catch (err) {
       console.log("error deleting list:", err);
