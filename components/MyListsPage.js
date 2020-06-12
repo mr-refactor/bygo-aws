@@ -25,7 +25,7 @@ const MyListsPage = ({ navigation }) => {
     <View style={styles.container}>
       <Button title="Add List" onPress={toggleAddListModal} />
       <MyLists navigation={navigation} ></MyLists>
-      {showModal ? <AddListModal />: null}
+      {showModal ? <AddListModal closeModal={toggleAddListModal}/>: null}
     </View>
   );
 };
