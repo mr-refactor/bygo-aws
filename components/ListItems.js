@@ -11,6 +11,7 @@ import {
 // GRAPH QL
 import { API, graphqlOperation } from "aws-amplify";
 import { deleteItem } from "../src/graphql/mutations";
+import { updateItem } from "../src/graphql/mutations";
 
 // Recoil
 
@@ -19,12 +20,13 @@ import { itemsState } from "../atoms/itemsState";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 // Helpers
-import { removeItemAtIndex } from "../services/helpers";
+import { removeItemAtIndex, replaceItemAtIndex } from "../services/helpers";
 /*-------------------------------------------------------------------------*/
 
 const ListItems = () => {
-  const currentList = useRecoilValue(currentListState);
+  // const currentList = useRecoilValue(currentListState);
   const [items, setItems] = useRecoilState(itemsState);
+  const uncheckedItems = items.filter(i => !i.checked)
 
   async function delItem(id) {
     try {
@@ -33,6 +35,21 @@ const ListItems = () => {
       setItems((prev) => removeItemAtIndex(prev, index));
     } catch (err) {
       console.log("error deleting list:", err);
+    }
+  }
+
+  async function checkItem(item) {
+    try {
+      await API.graphql(
+        graphqlOperation(updateItem, {
+          input: {id: item.id, checked: true},
+        })
+      );
+      const index = items.findIndex(i => i.id === item.id)
+      const baggedItem = {...item, checked: true}
+      setItems(prev => replaceItemAtIndex(prev, index, baggedItem))
+    } catch (err) {
+      console.log("error checking item:", err);
     }
   }
 
@@ -48,7 +65,7 @@ const ListItems = () => {
         <TouchableOpacity>
           <Text
             style={styles.checkButton}
-            onPress={() => console.log("putting Item in bag")}
+            onPress={() => checkItem(item)}
           >
             &#10003;
           </Text>
@@ -60,7 +77,7 @@ const ListItems = () => {
   return (
       <SafeAreaView style={styles.listContainer}>
         <FlatList
-          data={items}
+          data={uncheckedItems}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
         />
