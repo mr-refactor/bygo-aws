@@ -28,11 +28,22 @@ const ViewList = ({ route, navigation }) => {
   const { list } = route.params;
   const [currentList, setCurrentList] = useRecoilState(currentListState);
   const [items, setItems] = useRecoilState(itemsState);
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
+  const [empty, setEmpty] = useState(false);
+
+  function isEmpty() {
+    if (items.length === items.filter((i) => i.checked).length) {
+      setEmpty(true)
+    } else {
+      setEmpty(false)
+    }
+  }
 
   function toggleAddItemModal() {
-    setShowModal(prev => !prev)
+    setShowModal((prev) => !prev);
   }
+
+  useEffect(isEmpty, [items])
 
   useEffect(() => {
     async function fetchLists() {
@@ -57,7 +68,8 @@ const ViewList = ({ route, navigation }) => {
         <AntDesign name="plus" size={35} color="white" />
       </TouchableOpacity>
       <MyBagIcon navigation={navigation} />
-      {showModal ? <AddItemModal closeModal={toggleAddItemModal}/> : null}
+      {empty ? <Text>FUCKA YOU</Text> : null}
+      {showModal ? <AddItemModal closeModal={toggleAddItemModal} /> : null}
     </View>
   );
 };
@@ -74,14 +86,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 15,
     right: 15,
-    display: 'flex',
+    display: "flex",
     justifyContent: "center",
     alignItems: "center",
     width: 60,
     height: 60,
     borderRadius: 100,
-    backgroundColor: "#5cff6f"
-  }
+    backgroundColor: "#5cff6f",
+  },
 });
 
 export default ViewList;

@@ -17,55 +17,19 @@ export const currentUserState = atom({
                 "id": "85a8a63c-6676-4837-b2e9-f176745787cb",
                 "name": "Charger",
                 "category": "Essentials",
-                "checked": false
+                "checked": true
               },
               {
                 "id": "e7acb56b-3166-4a40-b7cc-59bb1b85fdf0",
                 "name": "Hat",
                 "category": "Clothing",
-                "checked": false
+                "checked": true
               },
               {
                 "id": "e6232f78-e50b-42da-ac46-b32e47d981f0",
                 "name": "Keys",
                 "category": "Essentials",
-                "checked": false
-              },
-              {
-                "id": "366126f2-5876-4a5d-8e7f-446802976d71",
-                "name": "Phone",
-                "category": "Essentials",
-                "checked": false
-              },
-              {
-                "id": "54f78788-a366-4f63-9a2e-e004314f5703",
-                "name": "Shirt",
-                "category": "Clothing",
-                "checked": false
-              },
-              {
-                "id": "0884180a-5197-4704-9cb3-0b27cffb82a1",
-                "name": "Shorts",
-                "category": "Clothing",
-                "checked": false
-              },
-              {
-                "id": "516a8de2-221f-4d62-8b5e-f16c0ed64173",
-                "name": "Socks",
-                "category": "Clothing",
-                "checked": false
-              },
-              {
-                "id": "bef84816-8b5d-4a2d-874d-861bd3f5f5a6",
-                "name": "Underwear",
-                "category": "Clothing",
-                "checked": false
-              },
-              {
-                "id": "9752859e-3ac5-480c-bd9e-673e2f920494",
-                "name": "Wallet",
-                "category": "Essentials",
-                "checked": false
+                "checked": true
               }
             ]
           }
@@ -74,21 +38,139 @@ export const currentUserState = atom({
           "id": "e23c291e-ebfe-4bd5-ad78-630c2463fdc2",
           "title": "Grocery Store",
           "items": {
-            "items": []
+            "items": [
+              {
+                "id": "12326a94-d093-4a38-a0be-30b8d2344bd4",
+                "name": "Cantelope",
+                "category": "Other",
+                "checked": true
+              },
+              {
+                "id": "9c9c6d67-ae69-4141-8a40-95b80d53093c",
+                "name": "Carrots",
+                "category": "Other",
+                "checked": true
+              },
+              {
+                "id": "5973c492-6deb-4ef6-baf5-059ce6680097",
+                "name": "Jackfruit",
+                "category": "Other",
+                "checked": true
+              },
+              {
+                "id": "3aa8ebf1-e310-4505-bd90-f50c8d2e6d8f",
+                "name": "Keys",
+                "category": "Other",
+                "checked": true
+              },
+              {
+                "id": "f473f57e-9843-4857-a58a-4fec7f7cbf8b",
+                "name": "Oranges",
+                "category": "Other",
+                "checked": true
+              },
+              {
+                "id": "3fb1a1b5-1ceb-411f-bfe9-93aad80349e6",
+                "name": "Phone",
+                "category": "Other",
+                "checked": true
+              },
+              {
+                "id": "7c7e10f2-e417-4a51-9726-a092360cdbd4",
+                "name": "Wallet",
+                "category": "Other",
+                "checked": true
+              },
+              {
+                "id": "56d27af6-bc97-4317-9caf-d59c561f8e0d",
+                "name": "Watermelon",
+                "category": "Other",
+                "checked": true
+              }
+            ]
           }
         },
         {
-          "id": "2b0ccfd8-1696-43cc-8778-422f606affe0",
-          "title": "Mom’s Place",
+          "id": "82041253-6453-4e5a-bcc9-56fefd37a2ae",
+          "title": "Movie Theater",
           "items": {
             "items": []
           }
         },
         {
-          "id": "c0e1f18d-c5c6-4494-9e06-26311221a7f4",
-          "title": "Cinema",
+          "id": "43c87781-550b-4301-a82e-838396efef5b",
+          "title": "Dogg Park",
           "items": {
-            "items": []
+            "items": [
+              {
+                "id": "bce8479f-54fb-4d74-9ef5-eec152db3280",
+                "name": "Dog",
+                "category": "Other",
+                "checked": false
+              },
+              {
+                "id": "3b2a78be-c291-44ec-acf8-232d0316e44c",
+                "name": "Frisbee",
+                "category": "Other",
+                "checked": true
+              },
+              {
+                "id": "5027d64a-f3ae-4b02-9be1-c8985d15e177",
+                "name": "Leash",
+                "category": "Other",
+                "checked": false
+              },
+              {
+                "id": "bb1e77a3-691f-4be6-a7e2-137ee6eec957",
+                "name": "Poop Bag",
+                "category": "Other",
+                "checked": false
+              },
+              {
+                "id": "19b7879c-ce11-43a3-a5cd-4aa7391f4707",
+                "name": "Shorts",
+                "category": "Other",
+                "checked": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "55494c8c-479e-4c9e-9f40-103048f52b82",
+          "title": "Bri’s Place",
+          "items": {
+            "items": [
+              {
+                "id": "67d0a8e8-1fdf-4d28-8257-dad3cd162e7f",
+                "name": "Computer",
+                "category": "Other",
+                "checked": false
+              },
+              {
+                "id": "2b7ebdb9-e767-4e5a-b91b-64bdd1945ded",
+                "name": "Hat",
+                "category": "Other",
+                "checked": false
+              },
+              {
+                "id": "35df5f3d-645a-440e-9fc3-48ab70e18cc7",
+                "name": "Keys",
+                "category": "Other",
+                "checked": false
+              },
+              {
+                "id": "52f572f0-9909-4b9f-ad54-a45e33d1642d",
+                "name": "Phone",
+                "category": "Other",
+                "checked": false
+              },
+              {
+                "id": "53447f80-0df4-4bb2-a985-19153c805f40",
+                "name": "Wallet",
+                "category": "Other",
+                "checked": false
+              }
+            ]
           }
         }
       ]
