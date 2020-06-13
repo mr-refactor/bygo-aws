@@ -15,7 +15,7 @@ import { updateItem } from "../src/graphql/mutations";
 
 // Recoil
 
-import { currentListState } from "../atoms/currentListState";
+// import { currentListState } from "../atoms/currentListState";
 import { itemsState } from "../atoms/itemsState";
 import { useRecoilState, useRecoilValue } from "recoil";
 
@@ -38,7 +38,7 @@ const ListItems = () => {
     }
   }
 
-  async function checkItem(item) {
+  async function addToBag(item) {
     try {
       await API.graphql(
         graphqlOperation(updateItem, {
@@ -65,7 +65,7 @@ const ListItems = () => {
         <TouchableOpacity>
           <Text
             style={styles.checkButton}
-            onPress={() => checkItem(item)}
+            onPress={() => addToBag(item)}
           >
             &#10003;
           </Text>

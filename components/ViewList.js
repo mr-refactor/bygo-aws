@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 100,
-    backgroundColor: "green"
+    backgroundColor: "#5cff6f"
   }
 });
 
