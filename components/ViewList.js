@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 // GRAPH QL
 import { API, graphqlOperation } from "aws-amplify";
 import { getList } from "../src/graphql/queries";
+import { updateItem } from "../src/graphql/mutations";
 
 // Recoil
 
@@ -15,6 +16,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import ListItems from "./ListItems";
 import AddItemModal from "./AddItemModal";
 import MyBagIcon from "./MyBagIcon";
+import Congrats from "./Congrats";
 
 // Expo Icons
 import { AntDesign } from "@expo/vector-icons";
@@ -32,10 +34,10 @@ const ViewList = ({ route, navigation }) => {
   const [empty, setEmpty] = useState(false);
 
   function isEmpty() {
-    if (items.length === items.filter((i) => i.checked).length) {
-      setEmpty(true)
+    if (items.length > 0 && items.length === items.filter((i) => i.checked).length) {
+      setEmpty(true);
     } else {
-      setEmpty(false)
+      setEmpty(false);
     }
   }
 
@@ -43,7 +45,7 @@ const ViewList = ({ route, navigation }) => {
     setShowModal((prev) => !prev);
   }
 
-  useEffect(isEmpty, [items])
+  useEffect(isEmpty, [items]);
 
   useEffect(() => {
     async function fetchLists() {
@@ -68,7 +70,7 @@ const ViewList = ({ route, navigation }) => {
         <AntDesign name="plus" size={35} color="white" />
       </TouchableOpacity>
       <MyBagIcon navigation={navigation} />
-      {empty ? <Text>FUCKA YOU</Text> : null}
+      {empty ? <Congrats navigation={navigation} /> : null}
       {showModal ? <AddItemModal closeModal={toggleAddItemModal} /> : null}
     </View>
   );
