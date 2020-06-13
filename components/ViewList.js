@@ -61,6 +61,11 @@ const ViewList = ({ route, navigation }) => {
       }
     }
     fetchLists();
+    return () => {
+      setItems([])
+      setShowModal(false)
+      setEmpty(false)
+    }
   }, []);
 
   return (
