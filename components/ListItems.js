@@ -150,19 +150,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     // borderWidth: 2
   },
-  delButton: {
-    flex: 1,
-    margin: 5,
-    fontSize: 15,
-    color: "red",
-    // borderWidth: 2
-  },
-  checkButton: {
-    flex: 1,
-    margin: 5,
-    fontSize: 15,
-    color: "green",
-  },
   leftAction: {
     backgroundColor: "#388e3c",
     justifyContent: "center",
