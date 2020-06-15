@@ -33,8 +33,8 @@ const App = () => {
 
   return (
     <RecoilRoot>
-      {loggedIn ? <NavigationContainer /> : <LoginPage toggleLoggedIn={toggleLoggedIn} />}
-      {/* <NavigationContainer /> */}
+      {/* {loggedIn ? <NavigationContainer /> : <LoginPage toggleLoggedIn={toggleLoggedIn} />} */}
+      <NavigationContainer />
     </RecoilRoot>
   );
 };

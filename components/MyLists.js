@@ -5,7 +5,8 @@ import {
   Text,
   FlatList,
   View,
-  Animated
+  Animated,
+  SafeAreaView,
 } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
@@ -36,13 +37,14 @@ const MyLists = ({ navigation }) => {
   function renderItem({ item }) {
     return (
       <Swipeable
-      renderRightActions={(progress, dragX) => (
-        <RightActions
-          progress={progress}
-          dragX={dragX}
-          handlePress={delList}
-          id={item.id}
-          />)}
+        renderRightActions={(progress, dragX) => (
+          <RightActions
+            progress={progress}
+            dragX={dragX}
+            handlePress={delList}
+            id={item.id}
+          />
+        )}
       >
         <View style={styles.li}>
           <TouchableOpacity
@@ -73,33 +75,33 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
+
+    //  borderWidth: 2,
+    // borderColor: "blue"
   },
   li: {
     flex: 1,
-    flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
+    alignSelf: "center",
+    width: "90%",
     borderBottomWidth: 2,
-    borderColor: "rgba(0, 0, 0, 0.6)",
-    padding: 5,
-    margin: 5,
+    borderColor: "rgba(0, 0, 0, 0.2)",
+    padding: 20,
+    //   margin: 5,
   },
   text: {
-    textAlign: "center",
     fontSize: 20,
-    margin: 5,
   },
-  rightAction: {
-    backgroundColor: "#dd2c00",
-    justifyContent: "center",
-    alignItems: "flex-end",
-  },
-  actionText: {
-    color: "#fff",
-    fontWeight: "400",
-    padding: 10,
-  },
+  // rightAction: {
+  //   backgroundColor: "#dd2c00",
+  //   justifyContent: "center",
+  //   alignItems: "flex-end",
+  // },
+  // actionText: {
+  //   color: "#fff",
+  //   fontWeight: "400",
+  //   padding: 10,
+  // },
 });
 
 const RightActions = ({ progress, dragX, handlePress, id }) => {

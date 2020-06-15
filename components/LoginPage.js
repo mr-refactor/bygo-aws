@@ -110,7 +110,7 @@ const LoginPage = ({ toggleLoggedIn }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#e07870",
+    backgroundColor: "#f5562a",
   },
   contentContainer: {
     flex: 1,

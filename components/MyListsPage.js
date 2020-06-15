@@ -42,20 +42,23 @@ const styles = StyleSheet.create({
     position: "relative",
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
     justifyContent: "flex-start",
+    alignItems: "center",
+    // Remove
+    // borderWidth: 1,
+    // borderColor: "blue"
   },
   addList: {
     position: "absolute",
     bottom: 15,
     right: 15,
-    display: "flex",
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     width: 60,
     height: 60,
     borderRadius: 100,
-    backgroundColor: "#5cff6f",
+    backgroundColor: "#25db37",
   },
 });
 
