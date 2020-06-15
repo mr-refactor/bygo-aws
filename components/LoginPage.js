@@ -48,8 +48,8 @@ const LoginPage = ({ toggleLoggedIn }) => {
       console.log(cuData);
       const cu = cuData.data.listUsers.items[0];
       setCurrentUser(cu);
-      toggleLoggedIn();
       setFormState(initialState);
+      toggleLoggedIn();
     } catch (err) {
       console.log("error finding user:", err);
     }
@@ -77,10 +77,10 @@ const LoginPage = ({ toggleLoggedIn }) => {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={signIn}>
+          <TouchableOpacity style={styles.button} onPress={addUser}>
             <Text style={styles.buttonText}>Sign Up</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={addUser}>
+          <TouchableOpacity style={styles.button} onPress={signIn}>
             <Text style={styles.buttonText}>Sign In</Text>
           </TouchableOpacity>
         </View>
