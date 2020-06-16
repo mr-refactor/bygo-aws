@@ -80,12 +80,12 @@ const ViewList = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.tabsContainer}>
-        <TouchableOpacity style={styles.tab} onPress={toggleShowMyBag}>
+        <TouchableOpacity style={showMyBag ? styles.tab : [styles.tab, styles.highlighted]} onPress={toggleShowMyBag}>
           <Text style={styles.tabText}>
             List ({items.filter((i) => !i.checked).length})
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tab} onPress={toggleShowMyBag}>
+        <TouchableOpacity style={!showMyBag ? styles.tab : [styles.tab, styles.highlighted]} onPress={toggleShowMyBag}>
           <Text style={styles.tabText}>
             Bag ({items.filter((i) => i.checked).length})
           </Text>
@@ -138,6 +138,10 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
     marginBottom: 10,
+  },
+  highlighted: {
+    borderBottomWidth: 3,
+    borderBottomColor: "#fff"
   },
   addList: {
     position: "absolute",
