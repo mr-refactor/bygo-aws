@@ -50,7 +50,7 @@ const AddItemModal = ({ closeModal }) => {
   }
 
   return (
-    <BlurView intensity={85} style={styles.modalContainer}>
+    <BlurView intensity={80} style={styles.modalContainer}>
       <View style={styles.modal}>
         <TouchableOpacity style={styles.cancel} onPress={closeModal}>
           <Feather name="x" size={24} color="white" />

@@ -45,7 +45,6 @@ const LoginPage = ({ toggleLoggedIn }) => {
       const cuData = await API.graphql(
         graphqlOperation(fetchUsers, { filter: { email: { eq: user.email } } })
       );
-      console.log(cuData);
       const cu = cuData.data.listUsers.items[0];
       setCurrentUser(cu);
       setFormState(initialState);

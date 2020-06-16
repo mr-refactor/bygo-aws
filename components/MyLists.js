@@ -6,7 +6,6 @@ import {
   FlatList,
   View,
   Animated,
-  SafeAreaView,
 } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
@@ -35,6 +34,7 @@ const MyLists = ({ navigation }) => {
   }
 
   function renderItem({ item }) {
+    const {items: {items}} = item
     return (
       <Swipeable
         renderRightActions={(progress, dragX) => (
@@ -46,15 +46,19 @@ const MyLists = ({ navigation }) => {
           />
         )}
       >
-        <View style={styles.li}>
+        <View >
           <TouchableOpacity
+          style={styles.li}
             onPress={() =>
               navigation.navigate("View List", {
                 list: item,
               })
             }
           >
-            <Text style={styles.text}>{item.title}</Text>
+            <Text numberOfLines={1} style={styles.text}>{item.title}</Text>
+        <View style={styles.itemsCount}>
+          <Text style={{color: "white", fontSize: 20, fontWeight: '600' }}>{items.length}</Text> 
+        </View>
           </TouchableOpacity>
         </View>
       </Swipeable>
@@ -81,27 +85,43 @@ const styles = StyleSheet.create({
   },
   li: {
     flex: 1,
-    justifyContent: "center",
-    alignSelf: "center",
-    width: "90%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignSelf: "flex-start",
+    marginLeft: 20,
+    width: "100%",
     borderBottomWidth: 2,
     borderColor: "rgba(0, 0, 0, 0.2)",
-    padding: 20,
+    
+    paddingRight: 25
     //   margin: 5,
   },
   text: {
+    paddingVertical: 20,
     fontSize: 20,
   },
-  // rightAction: {
-  //   backgroundColor: "#dd2c00",
-  //   justifyContent: "center",
-  //   alignItems: "flex-end",
-  // },
-  // actionText: {
-  //   color: "#fff",
-  //   fontWeight: "400",
-  //   padding: 10,
-  // },
+  itemsCount: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    margin: 10,
+    backgroundColor: "#1fbede",
+  },
+  rightAction: {
+    backgroundColor: "#dd2c00",
+    width: "30%",
+    justifyContent: "center",
+    alignItems: "flex-end",
+  },
+  actionText: {
+    color: "#fff",
+    fontSize: 20,
+    fontWeight: "600",
+    padding: 10,
+  },
 });
 
 const RightActions = ({ progress, dragX, handlePress, id }) => {

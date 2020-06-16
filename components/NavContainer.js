@@ -52,7 +52,7 @@ const NavContainer = () => {
         <Stack.Screen
           name="View List"
           component={ViewList}
-          // options={({ route }) => ({ title: route.params.list.title })}
+          options={({ route }) => ({ title: route.params.list.title })}
         />
         <Stack.Screen name="My Bag" component={MyBagPage} />
       </Stack.Navigator>

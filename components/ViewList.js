@@ -70,6 +70,14 @@ const ViewList = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.tabsContainer}>
+        <TouchableOpacity style={styles.tab}>
+  <Text style={styles.tabText}>List ({items.filter(i => !i.checked).length})</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.tab}>
+          <Text style={styles.tabText}>Bag ({items.filter(i => i.checked).length})</Text>
+        </TouchableOpacity>
+      </View>
       <ListItems />
       <TouchableOpacity style={styles.addList} onPress={toggleAddItemModal}>
         <AntDesign name="plus" size={35} color="white" />
@@ -88,6 +96,27 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "flex-start",
+  },
+  tabsContainer: {
+    backgroundColor: "#f5562a",
+    borderTopColor: "#fff",
+    borderTopWidth: 2,
+    display: "flex",
+    flexDirection: "row",
+    height: "7%",
+    width: "100%",
+  },
+  tab: {
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    width: "50%",
+    height: "100%"
+  },
+  tabText: {
+    color: "#fff",
+    fontSize: 16,
+    marginBottom: 10
   },
   addList: {
     position: "absolute",

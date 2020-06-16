@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   container: {
     position: "relative",
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#f5f5f5",
     justifyContent: "flex-start",
     alignItems: "center",
     // Remove
