@@ -11,7 +11,6 @@ import {
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { Card } from "react-native-shadow-cards";
 
-
 // Graph QL
 import { API, graphqlOperation } from "aws-amplify";
 import { updateItem } from "../src/graphql/mutations";
@@ -24,7 +23,6 @@ import { useRecoilState } from "recoil";
 // EXPO ICONS
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-
 
 // Helpers
 import { replaceItemAtIndex } from "../services/helpers";
@@ -62,7 +60,7 @@ const BagItems = () => {
         onSwipeableRightOpen={() => removeFromBag(item)}
       >
         <Card style={styles.li}>
-          <AntDesign name="questioncircleo" size={24} color="black" />
+          <AntDesign name="checkcircleo" size={26} color="green" />
           <Text style={styles.text}>{item.name}</Text>
         </Card>
       </Swipeable>
@@ -102,11 +100,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontSize: 20,
   },
-  leftAction: {
-    justifyContent: "center",
-    marginLeft: 20,
-  },
   rightAction: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "flex-end",
     marginRight: 20,
@@ -122,10 +117,12 @@ const RightActions = ({ progress, dragX }) => {
   });
 
   return (
-    <TouchableOpacity
-      style={styles.rightAction}
-    >
-      <MaterialCommunityIcons name="bag-personal-off-outline" size={30} color="black" />
+    <TouchableOpacity style={styles.rightAction}>
+      <MaterialCommunityIcons
+        name="bag-personal-off-outline"
+        size={30}
+        color="black"
+      />
     </TouchableOpacity>
   );
 };

@@ -72,8 +72,10 @@ const ListItems = () => {
         )}
       >
         <Card style={styles.li}>
-          <AntDesign name="questioncircleo" size={24} color="black" />
-          <Text style={styles.text}>{item.name}</Text>
+          <AntDesign name="questioncircleo" size={26} color="black" />
+          <Text style={styles.text}>
+            {item.name}
+            </Text>
         </Card>
       </Swipeable>
     );
@@ -115,6 +117,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   leftAction: {
+    flex: 1,
     justifyContent: "center",
     marginLeft: 20,
   },

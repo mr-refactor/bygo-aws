@@ -21,6 +21,8 @@ import Congrats from "./Congrats";
 
 // Expo Icons
 import { AntDesign } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 
 // HELPERS
 // import {replaceItemAtIndex} from '../services/helpers'
@@ -81,13 +83,14 @@ const ViewList = ({ route, navigation }) => {
     <View style={styles.container}>
       <View style={styles.tabsContainer}>
         <TouchableOpacity style={showMyBag ? styles.tab : [styles.tab, styles.highlighted]} onPress={toggleShowMyBag}>
+          <MaterialCommunityIcons style={{marginBottom: 2, marginRight: 5,}} name="clipboard-text-outline" size={18} color="white" />
           <Text style={styles.tabText}>
             List ({items.filter((i) => !i.checked).length})
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={!showMyBag ? styles.tab : [styles.tab, styles.highlighted]} onPress={toggleShowMyBag}>
-          <Text style={styles.tabText}>
-            Bag ({items.filter((i) => i.checked).length})
+          <MaterialCommunityIcons style={{marginBottom: 2, marginRight: 5,}} name="bag-personal-outline" size={18} color="#fff" />
+          <Text style={styles.tabText}>Bag ({items.filter((i) => i.checked).length})
           </Text>
         </TouchableOpacity>
       </View>
@@ -114,7 +117,7 @@ const styles = StyleSheet.create({
   container: {
     position: "relative",
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#f5f5f5",
     alignItems: "center",
     justifyContent: "flex-start",
   },
@@ -124,24 +127,28 @@ const styles = StyleSheet.create({
     // borderTopWidth: 2,
     display: "flex",
     flexDirection: "row",
-    height: "7%",
+    height: "5%",
     width: "100%",
   },
   tab: {
-    display: "flex",
-    justifyContent: "flex-end",
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
     alignItems: "center",
     width: "50%",
     height: "100%",
   },
   tabText: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     color: "#fff",
     fontSize: 16,
-    marginBottom: 10,
+    marginBottom: 2
   },
   highlighted: {
-    borderBottomWidth: 3,
-    borderBottomColor: "#fff"
+    borderTopWidth: 2,
+    borderTopColor: "#fff"
   },
   addList: {
     position: "absolute",
