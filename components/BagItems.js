@@ -6,9 +6,11 @@ import {
   TouchableOpacity,
   SafeAreaView,
   FlatList,
-  Animated
+  Animated,
 } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
+import { Card } from "react-native-shadow-cards";
+
 
 // Graph QL
 import { API, graphqlOperation } from "aws-amplify";
@@ -21,6 +23,8 @@ import { useRecoilState } from "recoil";
 
 // EXPO ICONS
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+
 
 // Helpers
 import { replaceItemAtIndex } from "../services/helpers";
@@ -47,18 +51,20 @@ const BagItems = () => {
   function renderItem({ item }) {
     return (
       <Swipeable
-      renderRightActions={(progress, dragX) => (
-        <RightActions
-          progress={progress}
-          dragX={dragX}
-          handlePress={removeFromBag}
-          item={item}
-        />
-      )}
+        renderRightActions={(progress, dragX) => (
+          <RightActions
+            progress={progress}
+            dragX={dragX}
+            handlePress={removeFromBag}
+            item={item}
+          />
+        )}
+        onSwipeableRightOpen={() => removeFromBag(item)}
       >
-        <View style={styles.li}>
+        <Card style={styles.li}>
+          <AntDesign name="questioncircleo" size={24} color="black" />
           <Text style={styles.text}>{item.name}</Text>
-        </View>
+        </Card>
       </Swipeable>
     );
   }
@@ -76,41 +82,39 @@ const BagItems = () => {
 
 const styles = StyleSheet.create({
   listContainer: {
-    flex: 5,
+    margin: 10,
+    flex: 1,
+    width: "100%",
   },
   li: {
     flex: 1,
     flexDirection: "row",
-    width: 300,
-    borderWidth: 2,
-    borderColor: "blue",
-    padding: 5,
-    margin: 5,
+    shadowColor: "#000",
+    padding: 15,
+    marginVertical: 10,
+    marginHorizontal: 20,
+    borderRadius: 5,
+    borderLeftWidth: 7,
+    borderLeftColor: "blue",
   },
   text: {
-    flex: 1,
+    marginLeft: 15,
+    marginBottom: 10,
+    fontSize: 20,
+  },
+  leftAction: {
     justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    margin: 5,
     marginLeft: 20,
-    fontSize: 17,
-    // borderWidth: 2
   },
   rightAction: {
-    backgroundColor: "#dd2c00",
     justifyContent: "center",
     alignItems: "flex-end",
-  },
-  actionText: {
-    color: "#fff",
-    fontWeight: "400",
-    padding: 10,
+    marginRight: 20,
   },
 });
 
 // RIGHT ACTION COMPONENT
-const RightActions = ({ progress, dragX, handlePress, item }) => {
+const RightActions = ({ progress, dragX }) => {
   const scale = dragX.interpolate({
     inputRange: [-100, 0],
     outputRange: [1, 0],
@@ -120,11 +124,8 @@ const RightActions = ({ progress, dragX, handlePress, item }) => {
   return (
     <TouchableOpacity
       style={styles.rightAction}
-      onPress={() => handlePress(item)}
     >
-      <Animated.Text style={[styles.actionText, { transform: [{ scale }] }]}>
-        Remove from Bag
-      </Animated.Text>
+      <MaterialCommunityIcons name="bag-personal-off-outline" size={30} color="black" />
     </TouchableOpacity>
   );
 };

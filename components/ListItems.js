@@ -134,7 +134,7 @@ const LeftActions = (progress, dragX) => {
 
   return (
     <Animated.View style={styles.leftAction}>
-      <AntDesign name="checkcircleo" size={24} color="green" />
+      <AntDesign name="checkcircleo" size={26} color="green" />
     </Animated.View>
   );
 };
@@ -152,7 +152,7 @@ const RightActions = ({ progress, dragX, handlePress, id }) => {
       style={styles.rightAction}
       onPress={() => handlePress(id)}
     >
-      <AntDesign name="delete" size={24} color="red" />
+      <AntDesign name="delete" size={26} color="red" />
     </TouchableOpacity>
   );
 };
