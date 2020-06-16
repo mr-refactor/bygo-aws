@@ -57,24 +57,22 @@ const ListItems = () => {
   // LIST ITEM RETURN
   function renderItem({ item }) {
     return (
-      <View>
-        <Swipeable
-          renderLeftActions={LeftActions}
-          onSwipeableLeftOpen={() => addToBag(item)}
-          renderRightActions={(progress, dragX) => (
-            <RightActions
-              progress={progress}
-              dragX={dragX}
-              handlePress={delItem}
-              id={item.id}
-            />
-          )}
-        >
-          <View style={styles.li}>
-            <Text style={styles.text}>{item.name}</Text>
-          </View>
-        </Swipeable>
-      </View>
+      <Swipeable
+        renderLeftActions={LeftActions}
+        onSwipeableLeftOpen={() => addToBag(item)}
+        renderRightActions={(progress, dragX) => (
+          <RightActions
+            progress={progress}
+            dragX={dragX}
+            handlePress={delItem}
+            id={item.id}
+          />
+        )}
+      >
+        <View style={styles.li}>
+          <Text style={styles.text}>{item.name}</Text>
+        </View>
+      </Swipeable>
     );
   }
   // MAIN RETURN
@@ -90,6 +88,50 @@ const ListItems = () => {
 };
 
 // LEFT ACTION COMPONENT
+
+const styles = StyleSheet.create({
+  listContainer: {
+    margin: 10,
+    flex: 1,
+    width: "100%",
+  },
+  li: {
+    flex: 1,
+    alignItems: "center",
+    shadowColor: "#000",
+    padding: 20,
+    marginVertical: 10,
+    marginHorizontal: 20,
+    borderRadius: 5,
+    borderColor: "blue",
+    borderWidth: 1,
+  },
+  // text: {
+  //   flex: 1,
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   textAlign: "center",
+  //   margin: 5,
+  //   fontSize: 17,
+  //   // borderWidth: 2
+  // },
+  // leftAction: {
+  //   backgroundColor: "#388e3c",
+  //   justifyContent: "center",
+  //   flex: 1,
+  // },
+  // rightAction: {
+  //   backgroundColor: "#dd2c00",
+  //   justifyContent: "center",
+  //   alignItems: "flex-end",
+  // },
+  // actionText: {
+  //   color: "#fff",
+  //   fontWeight: "400",
+  //   padding: 10,
+  // },
+});
+
 const LeftActions = (progress, dragX) => {
   const scale = dragX.interpolate({
     inputRange: [0, 100],
@@ -125,46 +167,4 @@ const RightActions = ({ progress, dragX, handlePress, id }) => {
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  listContainer: {
-    flex: 5,
-  },
-  li: {
-    flex: 1,
-    // justifyContent: "center",
-    // alignItems: "center",
-    flexDirection: "row",
-    width: 300,
-    borderWidth: 2,
-    borderColor: "blue",
-    padding: 5,
-    margin: 5,
-  },
-  text: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    margin: 5,
-    fontSize: 17,
-    // borderWidth: 2
-  },
-  leftAction: {
-    backgroundColor: "#388e3c",
-    justifyContent: "center",
-    flex: 1,
-  },
-  rightAction: {
-    backgroundColor: "#dd2c00",
-    justifyContent: "center",
-    alignItems: "flex-end",
-  },
-  actionText: {
-    color: "#fff",
-    fontWeight: "400",
-    padding: 10,
-  },
-});
-
 export default ListItems;

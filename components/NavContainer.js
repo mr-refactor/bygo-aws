@@ -54,7 +54,7 @@ const NavContainer = () => {
           component={ViewList}
           options={({ route }) => ({ title: route.params.list.title })}
         />
-        <Stack.Screen name="My Bag" component={MyBagPage} />
+        {/* <Stack.Screen name="My Bag" component={MyBagPage} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

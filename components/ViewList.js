@@ -15,7 +15,8 @@ import { useRecoilState, useRecoilValue } from "recoil";
 // Components
 import ListItems from "./ListItems";
 import AddItemModal from "./AddItemModal";
-import MyBagIcon from "./MyBagIcon";
+// import MyBagIcon from "./MyBagIcon";
+import MyBagPage from "./MyBagPage";
 import Congrats from "./Congrats";
 
 // Expo Icons
@@ -30,11 +31,15 @@ const ViewList = ({ route, navigation }) => {
   const { list } = route.params;
   const [currentList, setCurrentList] = useRecoilState(currentListState);
   const [items, setItems] = useRecoilState(itemsState);
-  const [showModal, setShowModal] = useState(false);
+  const [showAddItem, setshowAddItem] = useState(false);
+  const [showMyBag, setShowMyBag] = useState(false);
   const [empty, setEmpty] = useState(false);
 
   function isEmpty() {
-    if (items.length > 0 && items.length === items.filter((i) => i.checked).length) {
+    if (
+      items.length > 0 &&
+      items.length === items.filter((i) => i.checked).length
+    ) {
       setEmpty(true);
     } else {
       setEmpty(false);
@@ -42,7 +47,7 @@ const ViewList = ({ route, navigation }) => {
   }
 
   function toggleAddItemModal() {
-    setShowModal((prev) => !prev);
+    setshowAddItem((prev) => !prev);
   }
 
   useEffect(isEmpty, [items]);
@@ -62,29 +67,45 @@ const ViewList = ({ route, navigation }) => {
     }
     fetchLists();
     return () => {
-      setItems([])
-      setShowModal(false)
-      setEmpty(false)
-    }
+      setItems([]);
+      setshowAddItem(false);
+      setEmpty(false);
+    };
   }, []);
+
+  function toggleShowMyBag() {
+    setShowMyBag((prev) => !prev);
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.tabsContainer}>
-        <TouchableOpacity style={styles.tab}>
-  <Text style={styles.tabText}>List ({items.filter(i => !i.checked).length})</Text>
+        <TouchableOpacity style={styles.tab} onPress={toggleShowMyBag}>
+          <Text style={styles.tabText}>
+            List ({items.filter((i) => !i.checked).length})
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tab}>
-          <Text style={styles.tabText}>Bag ({items.filter(i => i.checked).length})</Text>
+        <TouchableOpacity style={styles.tab} onPress={toggleShowMyBag}>
+          <Text style={styles.tabText}>
+            Bag ({items.filter((i) => i.checked).length})
+          </Text>
         </TouchableOpacity>
       </View>
-      <ListItems />
-      <TouchableOpacity style={styles.addList} onPress={toggleAddItemModal}>
-        <AntDesign name="plus" size={35} color="white" />
-      </TouchableOpacity>
-      <MyBagIcon navigation={navigation} />
-      {empty ? <Congrats navigation={navigation} /> : null}
-      {showModal ? <AddItemModal closeModal={toggleAddItemModal} /> : null}
+
+      {showMyBag ? (
+        <MyBagPage />
+      ) : (
+        <>
+          <ListItems />
+          <TouchableOpacity style={styles.addList} onPress={toggleAddItemModal}>
+            <AntDesign name="plus" size={35} color="white" />
+          </TouchableOpacity>
+          {empty ? <Congrats navigation={navigation} /> : null}
+          {showAddItem ? (
+            <AddItemModal closeModal={toggleAddItemModal} />
+          ) : null}
+        </>
+      )}
     </View>
   );
 };
@@ -99,8 +120,8 @@ const styles = StyleSheet.create({
   },
   tabsContainer: {
     backgroundColor: "#f5562a",
-    borderTopColor: "#fff",
-    borderTopWidth: 2,
+    // borderTopColor: "#fff",
+    // borderTopWidth: 2,
     display: "flex",
     flexDirection: "row",
     height: "7%",
@@ -111,12 +132,12 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
     width: "50%",
-    height: "100%"
+    height: "100%",
   },
   tabText: {
     color: "#fff",
     fontSize: 16,
-    marginBottom: 10
+    marginBottom: 10,
   },
   addList: {
     position: "absolute",
