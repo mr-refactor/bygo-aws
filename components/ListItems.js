@@ -9,6 +9,8 @@ import {
   Animated,
 } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
+import { Card } from "react-native-shadow-cards";
+import { AntDesign } from "@expo/vector-icons";
 
 // GRAPH QL
 import { API, graphqlOperation } from "aws-amplify";
@@ -69,9 +71,10 @@ const ListItems = () => {
           />
         )}
       >
-        <View style={styles.li}>
+        <Card style={styles.li}>
+          <AntDesign name="questioncircleo" size={24} color="black" />
           <Text style={styles.text}>{item.name}</Text>
-        </View>
+        </Card>
       </Swipeable>
     );
   }
@@ -97,39 +100,29 @@ const styles = StyleSheet.create({
   },
   li: {
     flex: 1,
-    alignItems: "center",
+    flexDirection: "row",
     shadowColor: "#000",
-    padding: 20,
+    padding: 15,
     marginVertical: 10,
     marginHorizontal: 20,
     borderRadius: 5,
-    borderColor: "blue",
-    borderWidth: 1,
+    borderLeftWidth: 7,
+    borderLeftColor: "blue",
   },
-  // text: {
-  //   flex: 1,
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   textAlign: "center",
-  //   margin: 5,
-  //   fontSize: 17,
-  //   // borderWidth: 2
-  // },
-  // leftAction: {
-  //   backgroundColor: "#388e3c",
-  //   justifyContent: "center",
-  //   flex: 1,
-  // },
-  // rightAction: {
-  //   backgroundColor: "#dd2c00",
-  //   justifyContent: "center",
-  //   alignItems: "flex-end",
-  // },
-  // actionText: {
-  //   color: "#fff",
-  //   fontWeight: "400",
-  //   padding: 10,
-  // },
+  text: {
+    marginLeft: 15,
+    marginBottom: 10,
+    fontSize: 20,
+  },
+  leftAction: {
+    justifyContent: "center",
+    marginLeft: 20,
+  },
+  rightAction: {
+    justifyContent: "center",
+    alignItems: "flex-end",
+    marginRight: 20,
+  },
 });
 
 const LeftActions = (progress, dragX) => {
@@ -140,11 +133,9 @@ const LeftActions = (progress, dragX) => {
   });
 
   return (
-    <View style={styles.leftAction}>
-      <Animated.Text style={[styles.actionText, { transform: [{ scale }] }]}>
-        Add to Bag
-      </Animated.Text>
-    </View>
+    <Animated.View style={styles.leftAction}>
+      <AntDesign name="checkcircleo" size={24} color="green" />
+    </Animated.View>
   );
 };
 
@@ -161,9 +152,7 @@ const RightActions = ({ progress, dragX, handlePress, id }) => {
       style={styles.rightAction}
       onPress={() => handlePress(id)}
     >
-      <Animated.Text style={[styles.actionText, { transform: [{ scale }] }]}>
-        Delete
-      </Animated.Text>
+      <AntDesign name="delete" size={24} color="red" />
     </TouchableOpacity>
   );
 };
