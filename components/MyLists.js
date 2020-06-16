@@ -8,6 +8,7 @@ import {
   Animated,
 } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
+import { AntDesign } from "@expo/vector-icons";
 
 // GRAPH QL
 import { API, graphqlOperation } from "aws-amplify";
@@ -20,7 +21,7 @@ import { useRecoilState } from "recoil";
 // Helpers
 import { removeItemAtIndex } from "../services/helpers";
 
-const MyLists = ({ navigation }) => {
+const MyLists = ({ navigation, search }) => {
   const [lists, setLists] = useRecoilState(listsState);
 
   async function delList(id) {
@@ -74,7 +75,7 @@ const MyLists = ({ navigation }) => {
   return (
     <FlatList
       style={styles.container}
-      data={lists}
+      data={search.length > 0 ? lists.filter(l => l.title.includes(search)) : lists }
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
     />
@@ -117,8 +118,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#1fbede",
   },
   rightAction: {
-    backgroundColor: "#dd2c00",
-    width: "30%",
+    marginRight: 20,
+    width: "20%",
     justifyContent: "center",
     alignItems: "flex-end",
   },
@@ -142,9 +143,7 @@ const RightActions = ({ progress, dragX, handlePress, id }) => {
       style={styles.rightAction}
       onPress={() => handlePress(id)}
     >
-      <Animated.Text style={[styles.actionText, { transform: [{ scale }] }]}>
-        Delete
-      </Animated.Text>
+      <AntDesign name="delete" size={30} color="red" />
     </TouchableOpacity>
   );
 };

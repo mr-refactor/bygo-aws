@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, Button, StyleSheet, View, TouchableOpacity } from "react-native";
 
 // RECOIL
@@ -8,31 +8,41 @@ import { useRecoilState, useRecoilValue } from "recoil";
 
 // Expo Icons
 import { AntDesign } from "@expo/vector-icons";
+import { SearchBar } from "react-native-elements";
 
 // COMPONENTS
-import MyLists from './MyLists'
-import AddListModal from './AddListModal'
+import MyLists from "./MyLists";
+import AddListModal from "./AddListModal";
 
 /*-------------------------------------------------------------------------*/
 
 const MyListsPage = ({ navigation }) => {
   const currentUser = useRecoilValue(currentUserState);
   const [lists, setLists] = useRecoilState(listsState);
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
+  const [search, setSearch] = useState('');
 
-  useEffect(() => setLists(currentUser.lists.items), [])
+  useEffect(() => setLists(currentUser.lists.items), []);
 
   function toggleAddListModal() {
-    setShowModal(prev => !prev)
+    setShowModal((prev) => !prev);
   }
 
   return (
     <View style={styles.container}>
-      <MyLists navigation={navigation} ></MyLists>
+      <SearchBar
+        containerStyle={styles.searchBar}
+        lightTheme={true}
+        platform="ios"
+        placeholder="Search"
+        onChangeText={(val) => setSearch(val)}
+        value={search}
+      />
+      <MyLists navigation={navigation} search={search} ></MyLists>
       <TouchableOpacity style={styles.addList} onPress={toggleAddListModal}>
         <AntDesign name="plus" size={35} color="white" />
       </TouchableOpacity>
-      {showModal ? <AddListModal closeModal={toggleAddListModal}/>: null}
+      {showModal ? <AddListModal closeModal={toggleAddListModal} /> : null}
     </View>
   );
 };
@@ -48,6 +58,12 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: "blue"
   },
+  searchBar: {
+    display: "flex",
+    alignSelf: "flex-start",
+    width: "100%",
+    height: 70
+  },
   addList: {
     position: "absolute",
     bottom: 15,
@@ -61,6 +77,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#25db37",
   },
 });
-
 
 export default MyListsPage;
