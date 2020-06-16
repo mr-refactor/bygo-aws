@@ -75,7 +75,7 @@ const MyLists = ({ navigation, search }) => {
   return (
     <FlatList
       style={styles.container}
-      data={search.length > 0 ? lists.filter(l => l.title.includes(search)) : lists }
+      data={search.length > 2 ? lists.filter(l => l.title.includes(search)) : lists }
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
     />
