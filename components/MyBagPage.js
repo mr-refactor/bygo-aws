@@ -13,6 +13,7 @@ import { useRecoilState } from "recoil";
 // Components
 
 import BagItems from "./BagItems";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Helpers
 import { replaceItemAtIndex } from "../services/helpers";
@@ -56,11 +57,16 @@ const MyBagPage = () => {
   return (
     <View style={styles.container}>
       {empty ? (
-        <Text>Your Bag is Empty</Text>
+        <View style={styles.noItems}>
+          <Text>Your Bag is Empty</Text>
+        </View>
       ) : (
         <>
           <BagItems />
-          <Button title="Empty Bag" onPress={emptyBag} />
+          <TouchableOpacity style={styles.empty} onPress={emptyBag}>
+          <MaterialCommunityIcons style={styles.emptyBagIcon} name="bag-personal-off" size={35} color="black" />
+            <Text style={{color: "#fff", fontSize: 24, fontWeight: "400"}}>Empty</Text>
+          </TouchableOpacity>
         </>
       )}
     </View>
@@ -86,8 +92,21 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   empty: {
-    color: "red",
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: 50,
+    width: 100,
+    borderRadius: 20,
+    backgroundColor: "green",
+    marginVertical: 20
   },
+  emptyBagIcon: {
+    position: "absolute",
+    top: 7,
+    left: 32,
+  }
 });
 
 export default MyBagPage;
