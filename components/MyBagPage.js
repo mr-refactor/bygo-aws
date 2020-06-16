@@ -13,7 +13,7 @@ import { useRecoilState } from "recoil";
 // Components
 
 import BagItems from "./BagItems";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // Helpers
 import { replaceItemAtIndex } from "../services/helpers";
@@ -64,8 +64,15 @@ const MyBagPage = () => {
         <>
           <BagItems />
           <TouchableOpacity style={styles.empty} onPress={emptyBag}>
-          <MaterialCommunityIcons style={styles.emptyBagIcon} name="bag-personal-off" size={35} color="black" />
-            <Text style={{color: "#fff", fontSize: 24, fontWeight: "400"}}>Empty</Text>
+            <MaterialCommunityIcons
+              style={styles.emptyBagIcon}
+              name="bag-personal-off"
+              size={35}
+              color="black"
+            />
+            <Text style={{ color: "#fff", fontSize: 24, fontWeight: "400" }}>
+              Empty
+            </Text>
           </TouchableOpacity>
         </>
       )}
@@ -100,13 +107,13 @@ const styles = StyleSheet.create({
     width: 100,
     borderRadius: 20,
     backgroundColor: "green",
-    marginVertical: 20
+    marginVertical: 20,
   },
   emptyBagIcon: {
     position: "absolute",
     top: 7,
     left: 32,
-  }
+  },
 });
 
 export default MyBagPage;

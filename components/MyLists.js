@@ -34,7 +34,9 @@ const MyLists = ({ navigation }) => {
   }
 
   function renderItem({ item }) {
-    const {items: {items}} = item
+    const {
+      items: { items },
+    } = item;
     return (
       <Swipeable
         renderRightActions={(progress, dragX) => (
@@ -46,19 +48,23 @@ const MyLists = ({ navigation }) => {
           />
         )}
       >
-        <View >
+        <View>
           <TouchableOpacity
-          style={styles.li}
+            style={styles.li}
             onPress={() =>
               navigation.navigate("View List", {
                 list: item,
               })
             }
           >
-            <Text numberOfLines={1} style={styles.text}>{item.title}</Text>
-        <View style={styles.itemsCount}>
-          <Text style={{color: "white", fontSize: 20, fontWeight: '600' }}>{items.length}</Text> 
-        </View>
+            <Text numberOfLines={1} style={styles.text}>
+              {item.title}
+            </Text>
+            <View style={styles.itemsCount}>
+              <Text style={{ color: "white", fontSize: 20, fontWeight: "600" }}>
+                {items.length}
+              </Text>
+            </View>
           </TouchableOpacity>
         </View>
       </Swipeable>
@@ -92,8 +98,8 @@ const styles = StyleSheet.create({
     width: "100%",
     borderBottomWidth: 2,
     borderColor: "rgba(0, 0, 0, 0.2)",
-    
-    paddingRight: 25
+
+    paddingRight: 25,
     //   margin: 5,
   },
   text: {

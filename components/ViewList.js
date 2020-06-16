@@ -21,8 +21,7 @@ import Congrats from "./Congrats";
 
 // Expo Icons
 import { AntDesign } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // HELPERS
 // import {replaceItemAtIndex} from '../services/helpers'
@@ -82,15 +81,32 @@ const ViewList = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.tabsContainer}>
-        <TouchableOpacity style={showMyBag ? styles.tab : [styles.tab, styles.highlighted]} onPress={toggleShowMyBag}>
-          <MaterialCommunityIcons style={{marginBottom: 2, marginRight: 5,}} name="clipboard-text-outline" size={18} color="white" />
+        <TouchableOpacity
+          style={showMyBag ? styles.tab : [styles.tab, styles.highlighted]}
+          onPress={toggleShowMyBag}
+        >
+          <MaterialCommunityIcons
+            style={{ marginBottom: 2, marginRight: 5 }}
+            name="clipboard-text-outline"
+            size={18}
+            color="white"
+          />
           <Text style={styles.tabText}>
             List ({items.filter((i) => !i.checked).length})
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={!showMyBag ? styles.tab : [styles.tab, styles.highlighted]} onPress={toggleShowMyBag}>
-          <MaterialCommunityIcons style={{marginBottom: 2, marginRight: 5,}} name="bag-personal-outline" size={18} color="#fff" />
-          <Text style={styles.tabText}>Bag ({items.filter((i) => i.checked).length})
+        <TouchableOpacity
+          style={!showMyBag ? styles.tab : [styles.tab, styles.highlighted]}
+          onPress={toggleShowMyBag}
+        >
+          <MaterialCommunityIcons
+            style={{ marginBottom: 2, marginRight: 5 }}
+            name="bag-personal-outline"
+            size={18}
+            color="#fff"
+          />
+          <Text style={styles.tabText}>
+            Bag ({items.filter((i) => i.checked).length})
           </Text>
         </TouchableOpacity>
       </View>
@@ -144,11 +160,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     color: "#fff",
     fontSize: 16,
-    marginBottom: 2
+    marginBottom: 2,
   },
   highlighted: {
     borderTopWidth: 2,
-    borderTopColor: "#fff"
+    borderTopColor: "#fff",
   },
   addList: {
     position: "absolute",

@@ -73,9 +73,7 @@ const ListItems = () => {
       >
         <Card style={styles.li}>
           <AntDesign name="questioncircleo" size={26} color="black" />
-          <Text style={styles.text}>
-            {item.name}
-            </Text>
+          <Text style={styles.text}>{item.name}</Text>
         </Card>
       </Swipeable>
     );
