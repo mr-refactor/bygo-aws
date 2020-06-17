@@ -21,17 +21,23 @@ import { BlurView } from "expo-blur";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 
+// helpers
+import {categories} from '../services/categoryDictionary'
+
 const AddItemModal = ({ closeModal }) => {
   const [name, setName] = useState("");
-  const [category, setCategory] = useState("Other");
+  const [category, setCategory] = useState("other");
+
   const [items, setItems] = useRecoilState(itemsState)
   const currentList = useRecoilValue(currentListState);
 
   async function addItem() {
+    const itemToAdd = { name, category, checked: false, listID: currentList.id}
     try {
+      console.log(itemToAdd)
       const data = await API.graphql(
         graphqlOperation(createItem, {
-          input: { name, category, checked: false, listID: currentList.id},
+          input: itemToAdd,
         })
       );
       const newItem = {
@@ -49,6 +55,12 @@ const AddItemModal = ({ closeModal }) => {
     }
   }
 
+  function searchCategories(val) {
+    if (Object.keys(categories).includes(val.toLowerCase())){
+      setCategory(categories[val.toLowerCase()])
+    }
+  }
+
   return (
     <BlurView intensity={80} style={styles.modalContainer}>
       <View style={styles.modal}>
@@ -58,7 +70,7 @@ const AddItemModal = ({ closeModal }) => {
         <Text style={styles.header}>New Item</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(val) => setName(val)}
+          onChangeText={(val) => {setName(val); searchCategories(val)}}
           defaultValue={name}
           placeholder="Enter your item name"
         />

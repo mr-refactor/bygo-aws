@@ -66,11 +66,11 @@ const MyBagPage = () => {
           <TouchableOpacity style={styles.empty} onPress={emptyBag}>
             <MaterialCommunityIcons
               style={styles.emptyBagIcon}
-              name="bag-personal-off"
+              name="bag-personal-outline"
               size={35}
-              color="black"
+              color="white"
             />
-            <Text style={{ color: "#fff", fontSize: 24, fontWeight: "400" }}>
+            <Text style={{ color: "#000", fontSize: 24, fontWeight: "500" }}>
               Empty
             </Text>
           </TouchableOpacity>
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     height: 50,
     width: 100,
     borderRadius: 20,
-    backgroundColor: "green",
+    backgroundColor: "#ff5d3d",
     marginVertical: 20,
   },
   emptyBagIcon: {

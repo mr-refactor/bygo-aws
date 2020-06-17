@@ -20,6 +20,7 @@ import { useRecoilState } from "recoil";
 
 // Helpers
 import { removeItemAtIndex } from "../services/helpers";
+import pickColor from "../services/colorRandomizer";
 
 const MyLists = ({ navigation, search }) => {
   const [lists, setLists] = useRecoilState(listsState);
@@ -61,7 +62,7 @@ const MyLists = ({ navigation, search }) => {
             <Text numberOfLines={1} style={styles.text}>
               {item.title}
             </Text>
-            <View style={styles.itemsCount}>
+            <View style={[styles.itemsCount, {backgroundColor: `${pickColor()}`}]}>
               <Text style={{ color: "white", fontSize: 20, fontWeight: "600" }}>
                 {items.length}
               </Text>
@@ -115,7 +116,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 15,
     margin: 10,
-    backgroundColor: "#1fbede",
   },
   rightAction: {
     marginRight: 20,

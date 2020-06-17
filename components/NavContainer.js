@@ -23,8 +23,8 @@ const NavContainer = () => {
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
-            backgroundColor: "#f5562a",
             height: 90,
+            backgroundColor: "#f5562a",
           },
           headerTintColor: "#fff",
           headerTitleStyle: {
