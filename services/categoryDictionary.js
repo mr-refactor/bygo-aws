@@ -100,6 +100,7 @@ export const categories = {
     scarf: "clothing",
     scrubs: "clothing",
     shawl: "clothing",
+    shirt: "clothing",
     shoes: "clothing",
     shorts: "clothing",
     slacks: "clothing",
@@ -132,7 +133,7 @@ export const categories = {
     vest: "clothing",
     waistcoat: "clothing",
     wellingtons: "clothing",
-    wesuit: "clothing",
+    wetsuit: "clothing",
     windbreaker: "clothing",
 
     // Food

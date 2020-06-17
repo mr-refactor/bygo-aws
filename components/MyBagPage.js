@@ -6,9 +6,10 @@ import { API, graphqlOperation } from "aws-amplify";
 import { updateItem } from "../src/graphql/mutations";
 
 // Recoil
-
 import { itemsState } from "../atoms/itemsState";
-import { useRecoilState } from "recoil";
+import { listsState } from "../atoms/listsState";
+import { currentListState } from "../atoms/currentListState";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 // Components
 
@@ -20,7 +21,18 @@ import { replaceItemAtIndex } from "../services/helpers";
 
 const MyBagPage = () => {
   const [items, setItems] = useRecoilState(itemsState);
+  const [lists, setLists] = useRecoilState(listsState);
+  const currentList = useRecoilValue(currentListState);
   const [empty, setEmpty] = useState(false);
+
+  useEffect(() => {
+      setLists(prev => prev.map(l => {
+        if (l.id === currentList.id) {
+          return {...l, items: {items} }
+        }
+        return l
+      }))
+    }, [items])
 
   function emptyBag() {
     items.forEach((item) => removeFromBag(item));
@@ -48,14 +60,7 @@ const MyBagPage = () => {
       );
       const index = items.findIndex((i) => i.id === item.id);
       const baggedItem = { ...item, checked: false };
-      const newItemsArr = replaceItemAtIndex(items, index, baggedItem)
       setItems(prev => replaceItemAtIndex(prev, index, baggedItem));
-      setLists(prev => prev.map(l => {
-        if (l.id === currentList.id) {
-          return {...l, items: {items: newItemsArr} }
-        }
-        return l
-      }))
     } catch (err) {
       console.log("error checking item:", err);
     }

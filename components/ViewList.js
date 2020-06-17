@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     paddingVertical: 5,
     width: "25%",
-    backgroundColor: "#f5562a",
+    backgroundColor: "#4A9E57",
   },
   normalTab: {
     flex: 1,
