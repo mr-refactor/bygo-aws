@@ -17,8 +17,10 @@ import { updateItem } from "../src/graphql/mutations";
 
 // Recoil
 
+import { currentListState } from "../atoms/currentListState";
+import {listsState} from '../atoms/listsState'
 import { itemsState } from "../atoms/itemsState";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 // EXPO ICONS
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -29,6 +31,8 @@ import { replaceItemAtIndex } from "../services/helpers";
 
 const BagItems = () => {
   const [items, setItems] = useRecoilState(itemsState);
+  const [lists, setLists] = useRecoilState(listsState);
+  const currentList = useRecoilValue(currentListState);
   const itemsInBag = items.filter((item) => item.checked);
 
   async function removeFromBag(item) {
@@ -40,7 +44,14 @@ const BagItems = () => {
       );
       const index = items.findIndex((i) => i.id === item.id);
       const baggedItem = { ...item, checked: false };
-      setItems((prev) => replaceItemAtIndex(prev, index, baggedItem));
+      const newItemsArr = replaceItemAtIndex(items, index, baggedItem)
+      setItems(newItemsArr);
+      setLists(prev => prev.map(l => {
+        if (l.id === currentList.id) {
+          return {...l, items: {items: newItemsArr} }
+        }
+        return l
+      }))
     } catch (err) {
       console.log("error checking item:", err);
     }

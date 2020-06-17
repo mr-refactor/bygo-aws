@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Image, StyleSheet, Text, TextInput, View, Button } from "react-native";
 
 // GRAPH QL
@@ -24,6 +24,12 @@ const LoginPage = ({ toggleLoggedIn }) => {
     setFormState({ ...formState, [key]: value });
   }
 
+  useEffect(() => {
+    return () => {
+      setFormState(initialState);
+    }
+  }, [])
+
   async function addUser() {
     try {
       const user = { ...formState };
@@ -32,7 +38,6 @@ const LoginPage = ({ toggleLoggedIn }) => {
       );
       const cu = cuData.data.createUser;
       setCurrentUser(cu);
-      setFormState(initialState);
       toggleLoggedIn();
     } catch (err) {
       console.log("error creating user:", err);
@@ -47,7 +52,6 @@ const LoginPage = ({ toggleLoggedIn }) => {
       );
       const cu = cuData.data.listUsers.items[0];
       setCurrentUser(cu);
-      setFormState(initialState);
       toggleLoggedIn();
     } catch (err) {
       console.log("error finding user:", err);

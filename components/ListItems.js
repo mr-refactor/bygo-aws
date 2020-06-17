@@ -22,6 +22,8 @@ import { updateItem } from "../src/graphql/mutations";
 
 // import { currentListState } from "../atoms/currentListState";
 import { itemsState } from "../atoms/itemsState";
+import { listsState } from "../atoms/listsState";
+import { currentListState } from "../atoms/currentListState";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 // Helpers
@@ -31,15 +33,23 @@ import { catColors } from "../services/categoryDictionary";
 /*-------------------------------------------------------------------------*/
 
 const ListItems = () => {
-  // const currentList = useRecoilValue(currentListState);
   const [items, setItems] = useRecoilState(itemsState);
+  const [lists, setLists] = useRecoilState(listsState);
+  const currentList = useRecoilValue(currentListState);
   const uncheckedItems = items.filter((i) => !i.checked);
 
   async function delItem(id) {
     try {
       await API.graphql(graphqlOperation(deleteItem, { input: { id } }));
       const index = items.findIndex((i) => i.id === id);
-      setItems((prev) => removeItemAtIndex(prev, index));
+      const newItemsArr = removeItemAtIndex(items, index)
+      setItems(newItemsArr);
+      setLists(prev => prev.map(l => {
+        if (l.id === currentList.id) {
+          return {...l, items: {items: newItemsArr} }
+        }
+        return l
+      }))
     } catch (err) {
       console.log("error deleting list:", err);
     }
@@ -54,7 +64,14 @@ const ListItems = () => {
       );
       const index = items.findIndex((i) => i.id === item.id);
       const baggedItem = { ...item, checked: true };
-      setItems((prev) => replaceItemAtIndex(prev, index, baggedItem));
+      const newItemsArr = replaceItemAtIndex(items, index, baggedItem)
+      setItems(newItemsArr);
+      setLists(prev => prev.map(l => {
+        if (l.id === currentList.id) {
+          return {...l, items: {items: newItemsArr} }
+        }
+        return l
+      }))
     } catch (err) {
       console.log("error checking item:", err);
     }

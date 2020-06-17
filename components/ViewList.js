@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-// GRAPH QL
-import { API, graphqlOperation } from "aws-amplify";
-import { getList } from "../src/graphql/queries";
-import { updateItem } from "../src/graphql/mutations";
+// // GRAPH QL
+// import { API, graphqlOperation } from "aws-amplify";
+// import { getList } from "../src/graphql/queries";
+// import { updateItem } from "../src/graphql/mutations";
 
 // Recoil
 

@@ -48,7 +48,14 @@ const MyBagPage = () => {
       );
       const index = items.findIndex((i) => i.id === item.id);
       const baggedItem = { ...item, checked: false };
-      setItems((prev) => replaceItemAtIndex(prev, index, baggedItem));
+      const newItemsArr = replaceItemAtIndex(items, index, baggedItem)
+      setItems(prev => replaceItemAtIndex(prev, index, baggedItem));
+      setLists(prev => prev.map(l => {
+        if (l.id === currentList.id) {
+          return {...l, items: {items: newItemsArr} }
+        }
+        return l
+      }))
     } catch (err) {
       console.log("error checking item:", err);
     }
