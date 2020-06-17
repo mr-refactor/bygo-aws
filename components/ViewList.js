@@ -22,6 +22,7 @@ import Congrats from "./Congrats";
 // Expo Icons
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Card } from "react-native-shadow-cards";
 
 // HELPERS
 // import {replaceItemAtIndex} from '../services/helpers'
@@ -81,34 +82,32 @@ const ViewList = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.tabsContainer}>
-        <TouchableOpacity
-          style={showMyBag ? styles.tab : [styles.tab, styles.highlighted]}
-          onPress={toggleShowMyBag}
-        >
-          <MaterialCommunityIcons
-            style={{ marginBottom: 2, marginRight: 5 }}
-            name="clipboard-text-outline"
-            size={18}
-            color="white"
-          />
-          <Text style={styles.tabText}>
-            List ({items.filter((i) => !i.checked).length})
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={!showMyBag ? styles.tab : [styles.tab, styles.highlighted]}
-          onPress={toggleShowMyBag}
-        >
-          <MaterialCommunityIcons
-            style={{ marginBottom: 2, marginRight: 5 }}
-            name="bag-personal-outline"
-            size={18}
-            color="#fff"
-          />
-          <Text style={styles.tabText}>
-            Bag ({items.filter((i) => i.checked).length})
-          </Text>
-        </TouchableOpacity>
+        <Card style={showMyBag ? styles.normalTab : styles.highlightedTab}>
+          <TouchableOpacity style={styles.normalTab} onPress={toggleShowMyBag}>
+            <MaterialCommunityIcons
+              style={{ marginTop: 2, marginRight: 5 }}
+              name="clipboard-text-outline"
+              size={22}
+              color={showMyBag ? "rgba(0, 0, 0, 0.7)" : "#fff"}
+            />
+            <Text style={showMyBag ? styles.tabText : styles.highTabText}>
+              List ({items.filter((i) => !i.checked).length})
+            </Text>
+          </TouchableOpacity>
+        </Card>
+        <Card style={showMyBag ? styles.highlightedTab : styles.normalTab}>
+          <TouchableOpacity style={styles.normalTab} onPress={toggleShowMyBag}>
+            <MaterialCommunityIcons
+              style={{marginRight: 5 }}
+              name="bag-personal-outline"
+              size={24}
+              color={showMyBag ? "#fff" : "rgba(0, 0, 0, 0.7)"}
+            />
+            <Text style={showMyBag ? styles.highTabText : styles.tabText}>
+              Bag ({items.filter((i) => i.checked).length})
+            </Text>
+          </TouchableOpacity>
+        </Card>
       </View>
 
       {showMyBag ? (
@@ -117,7 +116,7 @@ const ViewList = ({ route, navigation }) => {
         <>
           <ListItems />
           <TouchableOpacity style={styles.addList} onPress={toggleAddItemModal}>
-            <AntDesign name="plus" size={35} color="white" />
+            <AntDesign name="plus" size={35} color="#fff" />
           </TouchableOpacity>
           {empty ? <Congrats navigation={navigation} /> : null}
           {showAddItem ? (
@@ -138,34 +137,54 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   tabsContainer: {
-    backgroundColor: "#f5562a",
-    // borderTopColor: "#fff",
-    // borderTopWidth: 2,
+    // borderWidth: 2,
+    marginTop: 20,
+    marginBottom: 10,
     display: "flex",
     flexDirection: "row",
-    height: "5%",
-    width: "100%",
+    justifyContent: "space-between",
+    // width: "100%",
   },
-  tab: {
+  highlightedTab: {
     flex: 1,
+
     flexDirection: "row",
+    //   justifyContent: "center",
+    //   alignItems: "center",
+    borderRadius: 15,
+    marginHorizontal: 20,
+    paddingVertical: 5,
+    width: "25%",
+    backgroundColor: "#f5562a",
+  },
+  normalTab: {
+    flex: 1,
+
+    flexDirection: "row",
+    //   justifyContent: "center",
+    //   alignItems: "center",
+    borderRadius: 15,
+    marginHorizontal: 20,
+    paddingVertical: 5,
+    width: "25%",
+    //   height: "100%",
+  },
+  highTabText: {
+    display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    width: "50%",
-    height: "100%",
+    color: "#fff",
+    fontSize: 20,
   },
   tabText: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    color: "#fff",
-    fontSize: 16,
-    marginBottom: 2,
+    color: "rgba(0, 0, 0, 0.7)",
+    fontSize: 20,
+    // marginBottom: 2,
   },
-  highlighted: {
-    borderTopWidth: 2,
-    borderTopColor: "#fff",
-  },
+
   addList: {
     position: "absolute",
     bottom: 15,

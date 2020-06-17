@@ -27,7 +27,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 // Helpers
 import { removeItemAtIndex, replaceItemAtIndex } from "../services/helpers";
 import { catIcons } from "../services/categoryDictionary";
-import { catColors } from "../services/categoryDictionary"
+import { catColors } from "../services/categoryDictionary";
 /*-------------------------------------------------------------------------*/
 
 const ListItems = () => {
@@ -74,7 +74,12 @@ const ListItems = () => {
           />
         )}
       >
-        <Card style={[styles.li, {borderLeftColor: catColors[item.category] || "blue"}]}>
+        <Card
+          style={[
+            styles.li,
+            { borderLeftColor: catColors[item.category] || "blue" },
+          ]}
+        >
           <MaterialCommunityIcons
             name={catIcons[item.category]}
             size={26}
@@ -89,7 +94,7 @@ const ListItems = () => {
   return (
     <SafeAreaView style={styles.listContainer}>
       <FlatList
-        data={uncheckedItems.sort((a, b) => a.category > b.category ? 1 : -1 )}
+        data={uncheckedItems.sort((a, b) => (a.category > b.category ? 1 : -1))}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
