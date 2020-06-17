@@ -18,6 +18,9 @@ import { deleteList } from "../src/graphql/mutations";
 import { listsState } from "../atoms/listsState";
 import { useRecoilState } from "recoil";
 
+// Outside Components
+import { Card } from "react-native-shadow-cards";
+
 // Helpers
 import { removeItemAtIndex } from "../services/helpers";
 import pickColor from "../services/colorRandomizer";
@@ -50,9 +53,9 @@ const MyLists = ({ navigation, search }) => {
           />
         )}
       >
-        <View>
+        <Card style={styles.li}>
           <TouchableOpacity
-            style={styles.li}
+            style={styles.to}
             onPress={() =>
               navigation.navigate("View List", {
                 list: item,
@@ -62,13 +65,15 @@ const MyLists = ({ navigation, search }) => {
             <Text numberOfLines={1} style={styles.text}>
               {item.title}
             </Text>
-            <View style={[styles.itemsCount, {backgroundColor: `${pickColor()}`}]}>
+            <View
+              style={[styles.itemsCount, { backgroundColor: `${pickColor()}` }]}
+            >
               <Text style={{ color: "white", fontSize: 20, fontWeight: "600" }}>
                 {items.length}
               </Text>
             </View>
           </TouchableOpacity>
-        </View>
+        </Card>
       </Swipeable>
     );
   }
@@ -76,7 +81,11 @@ const MyLists = ({ navigation, search }) => {
   return (
     <FlatList
       style={styles.container}
-      data={search.length > 2 ? lists.filter(l => l.title.includes(search)) : lists }
+      data={
+        search.length > 2
+          ? lists.filter((l) => l.title.includes(search))
+          : lists
+      }
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
     />
@@ -92,19 +101,32 @@ const styles = StyleSheet.create({
     // borderColor: "blue"
   },
   li: {
+    // flex: 1,
+    // flexDirection: "row",
+    // alignSelf: "flex-start",
+    // marginLeft: 20,
+    // width: "100%",
+    // borderBottomWidth: 2,
+    // borderColor: "rgba(0, 0, 0, 0.2)",
+
+    // paddingRight: 25,
+    // //   margin: 5,
+
     flex: 1,
+    shadowColor: "#000",
+    borderRadius: 5,
+    borderLeftWidth: 7,
+    marginVertical: 10,
+    marginHorizontal: 20,
+    paddingVertical: 15,
+  },
+  to: {
+    display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    alignSelf: "flex-start",
-    marginLeft: 20,
-    width: "100%",
-    borderBottomWidth: 2,
-    borderColor: "rgba(0, 0, 0, 0.2)",
-
-    paddingRight: 25,
-    //   margin: 5,
   },
   text: {
+    marginLeft: 20,
     paddingVertical: 20,
     fontSize: 20,
   },
