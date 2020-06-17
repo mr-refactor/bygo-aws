@@ -88,7 +88,8 @@ const AddItemModal = ({ closeModal }) => {
         val = word;
       }
     });
-    setCategory(categories[val])
+    let result = categories[val] || "other"
+    setCategory(result)
   }
 
   return (
