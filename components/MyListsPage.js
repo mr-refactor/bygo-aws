@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Text, Button, StyleSheet, View, TouchableOpacity } from "react-native";
 
+// Graph QL
+import { API, graphqlOperation } from "aws-amplify";
+import { fetchLists } from "../src/custom/queries";
+
 // RECOIL
 import { listsState } from "../atoms/listsState";
 import { currentUserState } from "../atoms/currentUserState";
@@ -26,13 +30,22 @@ const MyListsPage = ({ navigation }) => {
   const [showModal, setShowModal] = useState(false);
   const [search, setSearch] = useState("");
 
-  useEffect(
-    () =>
-      setLists(
-        currentUser.lists.items.map((l) => {
-          return { ...l, color: pickColor() };
-        })
-      ),
+  useEffect(() => {
+    async function getLists() {
+      try {
+        const listsData = await API.graphql(
+          graphqlOperation(fetchLists, { filter: {userID: {eq: currentUser.id}} })
+        );
+        setLists(listsData.data.listLists.items.map(l => ({...l, color: pickColor()})))
+      } catch (err) {
+        console.log("error fetching lists:", err);
+      }
+    }
+    getLists()
+    return () => {
+      console.log('unmounting')
+    }
+  },
     []
   );
 

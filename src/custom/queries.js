@@ -30,7 +30,7 @@ export const fetchUsers = /* GraphQL */ `
 
 export const fetchLists = /* GraphQL */ `
   query ListLists(
-    $filter: ModelUserFilterInput
+    $filter: ModelListFilterInput
     $limit: Int
     $nextToken: String
   ) {

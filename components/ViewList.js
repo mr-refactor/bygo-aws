@@ -15,7 +15,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 // Components
 import ListItems from "./ListItems";
 import AddItemModal from "./AddItemModal";
-import ItemsIntro from './ItemsIntro'
+import ItemsIntro from "./ItemsIntro";
 import MyBagPage from "./MyBagPage";
 import Congrats from "./Congrats";
 
@@ -54,25 +54,30 @@ const ViewList = ({ route, navigation }) => {
 
   useEffect(isEmpty, [items]);
 
+  // useEffect(() => {
+  //   async function fetchLists() {
+  //     try {
+  //       const listData = await API.graphql(
+  //         graphqlOperation(getList, { id: list.id })
+  //       );
+  //       const updatedList = listData.data.getList;
+  //       setCurrentList(updatedList);
+  //       setItems(updatedList.items.items);
+  //     } catch (err) {
+  //       console.log("error creating user:", err);
+  //     }
+  //   }
+  //   fetchLists();
+  //   return () => {
+  //     setItems([]);
+  //     setshowAddItem(false);
+  //     setEmpty(false);
+  //   };
+  // }, []);
+
   useEffect(() => {
-    async function fetchLists() {
-      try {
-        const listData = await API.graphql(
-          graphqlOperation(getList, { id: list.id })
-        );
-        const updatedList = listData.data.getList;
-        setCurrentList(updatedList);
-        setItems(updatedList.items.items);
-      } catch (err) {
-        console.log("error creating user:", err);
-      }
-    }
-    fetchLists();
-    return () => {
-      setItems([]);
-      setshowAddItem(false);
-      setEmpty(false);
-    };
+    setItems(list.items.items);
+    setCurrentList(list);
   }, []);
 
   function toggleShowMyBag() {
@@ -98,7 +103,7 @@ const ViewList = ({ route, navigation }) => {
         <Card style={showMyBag ? styles.highlightedTab : styles.normalTab}>
           <TouchableOpacity style={styles.normalTab} onPress={toggleShowMyBag}>
             <MaterialCommunityIcons
-              style={{marginRight: 5 }}
+              style={{ marginRight: 5 }}
               name="bag-personal-outline"
               size={24}
               color={showMyBag ? "#fff" : "rgba(0, 0, 0, 0.7)"}
@@ -123,7 +128,6 @@ const ViewList = ({ route, navigation }) => {
             <AddItemModal closeModal={toggleAddItemModal} />
           ) : null}
         </>
-        
       )}
     </View>
   );
