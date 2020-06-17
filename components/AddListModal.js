@@ -21,6 +21,10 @@ import { BlurView } from "expo-blur";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 
+// helpers
+import pickColor from "../services/colorRandomizer";
+
+
 const AddListModal = ({ closeModal }) => {
   const [title, setTitle] = useState("");
   const currentUser = useRecoilValue(currentUserState);
@@ -37,8 +41,12 @@ const AddListModal = ({ closeModal }) => {
         id: data.data.createList.id,
         title: data.data.createList.title,
         userID: data.data.createList.user.id,
-        items: [],
+        items: {
+          items: []
+        },
+        color: pickColor()
       };
+      console.log(newList)
       setLists((prev) => [...prev, newList]);
       setTitle("");
     } catch (err) {

@@ -15,7 +15,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 // Components
 import ListItems from "./ListItems";
 import AddItemModal from "./AddItemModal";
-// import MyBagIcon from "./MyBagIcon";
+import ItemsIntro from './ItemsIntro'
 import MyBagPage from "./MyBagPage";
 import Congrats from "./Congrats";
 
@@ -113,6 +113,7 @@ const ViewList = ({ route, navigation }) => {
       {showMyBag ? (
         <MyBagPage />
       ) : (
+        items.length <= 0 ? <ItemsIntro /> :
         <>
           <ListItems />
           <TouchableOpacity style={styles.addList} onPress={toggleAddItemModal}>
@@ -123,6 +124,7 @@ const ViewList = ({ route, navigation }) => {
             <AddItemModal closeModal={toggleAddItemModal} />
           ) : null}
         </>
+        
       )}
     </View>
   );

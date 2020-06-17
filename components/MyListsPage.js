@@ -13,6 +13,7 @@ import { SearchBar } from "react-native-elements";
 // COMPONENTS
 import MyLists from "./MyLists";
 import AddListModal from "./AddListModal";
+import ListIntro from "./ListIntro";
 
 // Helpers
 import pickColor from "../services/colorRandomizer";
@@ -41,19 +42,25 @@ const MyListsPage = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <SearchBar
-        containerStyle={styles.searchBar}
-        lightTheme={true}
-        platform="ios"
-        placeholder="Search"
-        onChangeText={(val) => setSearch(val)}
-        value={search}
-      />
-      <MyLists navigation={navigation} search={search}></MyLists>
-      <TouchableOpacity style={styles.addList} onPress={toggleAddListModal}>
-        <AntDesign name="plus" size={35} color="white" />
-      </TouchableOpacity>
-      {showModal ? <AddListModal closeModal={toggleAddListModal} /> : null}
+      {lists.length <= 0 ? (
+        <ListIntro />
+      ) : (
+        <>
+          <SearchBar
+            containerStyle={styles.searchBar}
+            lightTheme={true}
+            platform="ios"
+            placeholder="Search"
+            onChangeText={(val) => setSearch(val)}
+            value={search}
+          />
+          <MyLists navigation={navigation} search={search}></MyLists>
+        </>
+      )}
+          <TouchableOpacity style={styles.addList} onPress={toggleAddListModal}>
+            <AntDesign name="plus" size={35} color="white" />
+          </TouchableOpacity>
+          {showModal ? <AddListModal closeModal={toggleAddListModal} /> : null}
     </View>
   );
 };
