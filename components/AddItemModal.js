@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -14,6 +14,7 @@ import { createItem } from "../src/graphql/mutations";
 // Recoil
 import { currentListState } from "../atoms/currentListState";
 import { itemsState } from "../atoms/itemsState";
+import { listsState } from "../atoms/listsState";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 // EXPO
@@ -28,8 +29,20 @@ const AddItemModal = ({ closeModal }) => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("other");
 
+  const [lists, setLists] = useRecoilState(listsState);
   const [items, setItems] = useRecoilState(itemsState);
   const currentList = useRecoilValue(currentListState);
+
+  // useEffect(() => {
+  //   return () => {
+  //     setLists(prev => prev.map(l => {
+  //       if (l.id === currentList.id) {
+  //         return {...l, items: {items: [...items]} }
+  //       }
+  //       return l
+  //     }))
+  //   }
+  // }, [])
 
   async function addItem() {
     const itemToAdd = {
@@ -39,7 +52,6 @@ const AddItemModal = ({ closeModal }) => {
       listID: currentList.id,
     };
     try {
-      console.log(itemToAdd);
       const data = await API.graphql(
         graphqlOperation(createItem, {
           input: itemToAdd,
@@ -53,6 +65,12 @@ const AddItemModal = ({ closeModal }) => {
         listID: data.data.createItem.list.id,
       };
       setItems((prev) => [...prev, newItem]);
+      setLists(prev => prev.map(l => {
+        if (l.id === currentList.id) {
+          return {...l, items: {items: [...items, newItem]} }
+        }
+        return l
+      }))
       setName("");
       closeModal();
     } catch (err) {

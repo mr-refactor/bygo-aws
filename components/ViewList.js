@@ -86,6 +86,7 @@ const ViewList = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
+      {console.log(list)}
       <View style={styles.tabsContainer}>
         <Card style={showMyBag ? styles.normalTab : styles.highlightedTab}>
           <TouchableOpacity style={styles.normalTab} onPress={toggleShowMyBag}>

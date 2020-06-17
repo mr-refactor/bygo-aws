@@ -55,6 +55,7 @@ const MyListsPage = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      {console.log(lists)}
       {lists.length <= 0 ? (
         <ListIntro />
       ) : (
