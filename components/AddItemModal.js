@@ -13,7 +13,7 @@ import { createItem } from "../src/graphql/mutations";
 
 // Recoil
 import { currentListState } from "../atoms/currentListState";
-import { itemsState } from '../atoms/itemsState';
+import { itemsState } from "../atoms/itemsState";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 // EXPO
@@ -22,19 +22,24 @@ import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 
 // helpers
-import {categories} from '../services/categoryDictionary'
+import { categories } from "../services/categoryDictionary";
 
 const AddItemModal = ({ closeModal }) => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("other");
 
-  const [items, setItems] = useRecoilState(itemsState)
+  const [items, setItems] = useRecoilState(itemsState);
   const currentList = useRecoilValue(currentListState);
 
   async function addItem() {
-    const itemToAdd = { name, category, checked: false, listID: currentList.id}
+    const itemToAdd = {
+      name,
+      category,
+      checked: false,
+      listID: currentList.id,
+    };
     try {
-      console.log(itemToAdd)
+      console.log(itemToAdd);
       const data = await API.graphql(
         graphqlOperation(createItem, {
           input: itemToAdd,
@@ -49,16 +54,23 @@ const AddItemModal = ({ closeModal }) => {
       };
       setItems((prev) => [...prev, newItem]);
       setName("");
-      closeModal()
+      closeModal();
     } catch (err) {
       console.log("error creating user:", err);
     }
   }
 
   function searchCategories(val) {
-    if (Object.keys(categories).includes(val.toLowerCase())){
-      setCategory(categories[val.toLowerCase()])
-    }
+    let arr1 = val.toLowerCase().split(" ");
+
+    let catKeys = Object.keys(categories);
+
+    arr1.forEach((word) => {
+      if (catKeys.includes(word)) {
+        val = word;
+      }
+    });
+    setCategory(categories[val])
   }
 
   return (
@@ -70,14 +82,17 @@ const AddItemModal = ({ closeModal }) => {
         <Text style={styles.header}>New Item</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(val) => {setName(val); searchCategories(val)}}
+          onChangeText={(val) => {
+            setName(val);
+            searchCategories(val);
+          }}
           defaultValue={name}
           placeholder="Enter your item name"
         />
         <TouchableOpacity
           style={styles.addButton}
           onPress={() => {
-            addItem()
+            addItem();
           }}
         >
           <AntDesign name="plus" size={24} color="white" />

@@ -11,6 +11,7 @@ import {
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { Card } from "react-native-shadow-cards";
 import { AntDesign } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // GRAPH QL
 import { API, graphqlOperation } from "aws-amplify";
@@ -25,6 +26,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 
 // Helpers
 import { removeItemAtIndex, replaceItemAtIndex } from "../services/helpers";
+import { icons } from "../services/categoryDictionary";
 /*-------------------------------------------------------------------------*/
 
 const ListItems = () => {
@@ -72,7 +74,11 @@ const ListItems = () => {
         )}
       >
         <Card style={styles.li}>
-          <AntDesign name="questioncircleo" size={26} color="black" />
+          <MaterialCommunityIcons
+            name={icons[item.category]}
+            size={26}
+            color="black"
+          />
           <Text style={styles.text}>{item.name}</Text>
         </Card>
       </Swipeable>

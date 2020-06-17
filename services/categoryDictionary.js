@@ -30,3 +30,12 @@ export const categories = {
     "fastener": "tools",
 }
 
+export const icons = {
+    clothing: "tshirt-crew-outline",
+    tools: "toolbox-outline",
+    other: "information-outline"
+}
+
+
+
+
