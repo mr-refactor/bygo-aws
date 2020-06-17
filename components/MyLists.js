@@ -23,7 +23,6 @@ import { Card } from "react-native-shadow-cards";
 
 // Helpers
 import { removeItemAtIndex } from "../services/helpers";
-import pickColor from "../services/colorRandomizer";
 
 const MyLists = ({ navigation, search }) => {
   const [lists, setLists] = useRecoilState(listsState);
@@ -53,7 +52,7 @@ const MyLists = ({ navigation, search }) => {
           />
         )}
       >
-        <Card style={styles.li}>
+        <Card style={[styles.li, {borderColor: item.color}]}>
           <TouchableOpacity
             style={styles.to}
             onPress={() =>
@@ -66,7 +65,7 @@ const MyLists = ({ navigation, search }) => {
               {item.title}
             </Text>
             <View
-              style={[styles.itemsCount, { backgroundColor: `${pickColor()}` }]}
+              style={[styles.itemsCount, { backgroundColor: item.color }]}
             >
               <Text style={{ color: "white", fontSize: 20, fontWeight: "600" }}>
                 {items.length}

@@ -14,15 +14,26 @@ import { SearchBar } from "react-native-elements";
 import MyLists from "./MyLists";
 import AddListModal from "./AddListModal";
 
+// Helpers
+import pickColor from "../services/colorRandomizer";
+
 /*-------------------------------------------------------------------------*/
 
 const MyListsPage = ({ navigation }) => {
   const currentUser = useRecoilValue(currentUserState);
   const [lists, setLists] = useRecoilState(listsState);
   const [showModal, setShowModal] = useState(false);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
-  useEffect(() => setLists(currentUser.lists.items), []);
+  useEffect(
+    () =>
+      setLists(
+        currentUser.lists.items.map((l) => {
+          return { ...l, color: pickColor() };
+        })
+      ),
+    []
+  );
 
   function toggleAddListModal() {
     setShowModal((prev) => !prev);
@@ -38,7 +49,7 @@ const MyListsPage = ({ navigation }) => {
         onChangeText={(val) => setSearch(val)}
         value={search}
       />
-      <MyLists navigation={navigation} search={search} ></MyLists>
+      <MyLists navigation={navigation} search={search}></MyLists>
       <TouchableOpacity style={styles.addList} onPress={toggleAddListModal}>
         <AntDesign name="plus" size={35} color="white" />
       </TouchableOpacity>
@@ -62,7 +73,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignSelf: "flex-start",
     width: "100%",
-    height: 70
+    height: 70,
   },
   addList: {
     position: "absolute",
