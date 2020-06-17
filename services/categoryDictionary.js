@@ -1,3 +1,5 @@
+import pickColor from './colorRandomizer'
+
 export const categories = {
 
     //  Clothing
@@ -215,11 +217,11 @@ export const catIcons = {
 }
 
 export const catColors = {
-    clothing: "#BCB259",
-    entertainment: "#CFEC1D",
-    food: "#6D4AB7",
-    tools: "#A7BDF4",
-    other: "#5AD2A7"
+    clothing: `${pickColor()}`,
+    entertainment: `${pickColor()}`,
+    food: `${pickColor()}`,
+    tools: `${pickColor()}`,
+    other: `${pickColor()}`
 }
 
 
