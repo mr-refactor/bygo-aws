@@ -27,3 +27,28 @@ export const fetchUsers = /* GraphQL */ `
     }
   }
 `;
+
+export const fetchLists = /* GraphQL */ `
+  query ListLists(
+    $filter: ModelUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listLists(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        title
+        items {
+          items {
+              id
+              name
+              category
+              checked 
+          }
+        }
+      }
+      nextToken
+    }
+  }
+`;
+

@@ -2,16 +2,16 @@ import { atom } from "recoil";
 
 export const currentUserState = atom({
   key: "currentUserState",
-  default:  
-  {
-    "id": "48b95e8b-d2a2-4754-aea9-59576f5fe201",
-    "email": "jaydoe@yahoo.com",
-    "name": "Jason Doe",
-    "password": "12345",
-    "lists": {
-      "items": []
-    }
-  }
+  default: []
+  // {
+  //   "id": "48b95e8b-d2a2-4754-aea9-59576f5fe201",
+  //   "email": "jaydoe@yahoo.com",
+  //   "name": "Jason Doe",
+  //   "password": "12345",
+  //   "lists": {
+  //     "items": []
+  //   }
+  // }
   // {
   //   "id": "246e39e9-bd5b-465e-844f-d10b94903100",
   //   "name": "Rob",
