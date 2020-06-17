@@ -1,11 +1,10 @@
 import React from "react";
 import { TouchableOpacity, Text } from "react-native";
 
-// EXPO ICONS
-import { MaterialIcons } from "@expo/vector-icons";
 
 // Components
 import MyListsPage from "./MyListsPage";
+import Hamburger from "./HamburgerModal"
 import MyBagPage from "./MyBagPage";
 import ViewList from "./ViewList";
 
@@ -38,14 +37,7 @@ const NavContainer = () => {
           component={MyListsPage}
           options={{
             headerRight: () => (
-              <TouchableOpacity onPress={() => alert("Hamburger Menu YAY!")}>
-                <MaterialIcons
-                  name="menu"
-                  size={34}
-                  color="#fff"
-                  style={{ marginRight: 20 }}
-                />
-              </TouchableOpacity>
+              <Hamburger />
             ),
           }}
         />
