@@ -113,7 +113,6 @@ const ViewList = ({ route, navigation }) => {
       {showMyBag ? (
         <MyBagPage />
       ) : (
-        items.length <= 0 ? <ItemsIntro /> :
         <>
           <ListItems />
           <TouchableOpacity style={styles.addList} onPress={toggleAddItemModal}>
