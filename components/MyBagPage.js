@@ -103,16 +103,20 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    height: 50,
-    width: 100,
+    padding: 20,
     borderRadius: 20,
     backgroundColor: "#ff5d3d",
     marginVertical: 20,
   },
   emptyBagIcon: {
     position: "absolute",
-    top: 7,
-    left: 32,
+    top: 65,
+    left: 85,
+    transform: [
+      {translateX: -50},
+      {translateY: -50}
+    ],
+    opacity: 0.4
   },
 });
 
