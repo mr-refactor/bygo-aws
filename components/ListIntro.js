@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 30,
     fontFamily: `${themes.addFont}`,
-    marginVertical: 25,
+    marginTop: 20,
+    marginBottom: 12,
     marginHorizontal: 5
   },
   contentContainer: {
