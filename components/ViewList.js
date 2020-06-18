@@ -18,6 +18,7 @@ import AddItemModal from "./AddItemModal";
 import ItemsIntro from "./ItemsIntro";
 import MyBagPage from "./MyBagPage";
 import Congrats from "./Congrats";
+import NoItemsCard from "./NoItemsCard";
 
 // Expo Icons
 import { AntDesign } from "@expo/vector-icons";
@@ -115,10 +116,12 @@ const ViewList = ({ route, navigation }) => {
         </Card>
       </View>
 
+
       {showMyBag ? (
         <MyBagPage />
-      ) : (
-        <>
+        ) : (
+          <>
+          {items.length === 0 ? <NoItemsCard /> : null}
           <ListItems />
           <TouchableOpacity style={styles.addList} onPress={toggleAddItemModal}>
             <AntDesign name="plus" size={35} color="#fff" />

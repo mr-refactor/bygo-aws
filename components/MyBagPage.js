@@ -42,7 +42,6 @@ const MyBagPage = () => {
 
   function isEmpty() {
     if (
-      items.length > 0 &&
       items.length === items.filter((i) => !i.checked).length
     ) {
       setEmpty(true);
