@@ -24,6 +24,8 @@ import NoItemsCard from "./NoItemsCard";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Card } from "react-native-shadow-cards";
+import themes from "../services/themes"
+
 
 // HELPERS
 // import {replaceItemAtIndex} from '../services/helpers'
@@ -183,6 +185,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     color: "#fff",
     fontSize: 20,
+    fontFamily: `${themes.addFont}`,
   },
   tabText: {
     display: "flex",
@@ -190,6 +193,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     color: "rgba(0, 0, 0, 0.7)",
     fontSize: 20,
+    fontFamily: `${themes.addFont}`,
     // marginBottom: 2,
   },
 

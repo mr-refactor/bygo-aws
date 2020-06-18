@@ -3,13 +3,15 @@ import { View, Text, StyleSheet } from "react-native";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Card } from "react-native-shadow-cards";
+import themes from "../services/themes"
+
 
 
 const NoItemsCard = () => {
   return (
     <Card style={styles.noItems}>
       <Text style={styles.noHeader}>You Haven't Added Any Items</Text>
-      <Text style={{ fontSize: 15, marginHorizontal: 25 }}>
+      <Text style={{ fontSize: 15, fontFamily: `${themes.itemFont}`, marginHorizontal: 25 }}>
         Tap the ' + ' button to add a new item.
       </Text>
       <MaterialCommunityIcons
@@ -32,6 +34,7 @@ const styles = StyleSheet.create({
   },
   noHeader: {
     fontSize: 22,
+    fontFamily: `${themes.addFont}`,
     fontWeight: "600",
     marginTop: 100,
     marginBottom: 40,

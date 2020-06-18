@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 
 import { Card } from "react-native-shadow-cards";
 import { AntDesign, MaterialIcons } from "@expo/vector-icons";
+import themes from "../services/themes"
 
 
 const ListIntro = () => {
@@ -41,6 +42,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 30,
+    fontFamily: `${themes.addFont}`,
     marginVertical: 25,
     marginHorizontal: 5
   },
@@ -49,10 +51,12 @@ const styles = StyleSheet.create({
   },
   contentHeader: {
     fontSize: 20,
+    fontFamily: `${themes.itemFont}`,
     fontWeight: "600"
   },
   content: {
     fontSize: 20,
+    fontFamily: `${themes.itemFont}`,
     margin: 5
   }
 });

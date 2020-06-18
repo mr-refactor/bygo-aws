@@ -23,6 +23,7 @@ import { Card } from "react-native-shadow-cards";
 
 // Helpers
 import { removeItemAtIndex } from "../services/helpers";
+import themes from "../services/themes"
 
 const MyLists = ({ navigation, search }) => {
   const [lists, setLists] = useRecoilState(listsState);
@@ -67,7 +68,7 @@ const MyLists = ({ navigation, search }) => {
             <View
               style={[styles.itemsCount, { backgroundColor: item.color }]}
             >
-              <Text style={{ color: "white", fontSize: 20, fontWeight: "600" }}>
+              <Text style={{ color: "white", fontSize: 20, fontFamily: `${themes.addFont}`, fontWeight: "600" }}>
                 {items.length}
               </Text>
             </View>
@@ -127,7 +128,8 @@ const styles = StyleSheet.create({
   text: {
     marginLeft: 20,
     paddingVertical: 20,
-    fontSize: 20,
+    fontSize: 24,
+    fontFamily: `${themes.listFont}`
   },
   itemsCount: {
     display: "flex",
@@ -144,12 +146,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "flex-end",
   },
-  actionText: {
-    color: "#fff",
-    fontSize: 20,
-    fontWeight: "600",
-    padding: 10,
-  },
+  // actionText: {
+  //   color: "#fff",
+  //   fontSize: 20,
+  //   fontWeight: "600",
+  //   padding: 10,
+  // },
 });
 
 const RightActions = ({ progress, dragX, handlePress, id }) => {

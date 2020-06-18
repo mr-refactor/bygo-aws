@@ -29,6 +29,8 @@ import { AntDesign } from "@expo/vector-icons";
 // Helpers
 import { replaceItemAtIndex } from "../services/helpers";
 import { catColors } from "../services/categoryDictionary";
+import themes from "../services/themes"
+
 
 
 const BagItems = () => {
@@ -115,6 +117,7 @@ const styles = StyleSheet.create({
   text: {
     marginLeft: 15,
     marginBottom: 10,
+    fontFamily: `${themes.itemFont}`,
     fontSize: 20,
   },
   rightAction: {

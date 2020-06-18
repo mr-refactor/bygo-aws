@@ -30,6 +30,8 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { removeItemAtIndex, replaceItemAtIndex } from "../services/helpers";
 import { catIcons } from "../services/categoryDictionary";
 import { catColors } from "../services/categoryDictionary";
+import themes from "../services/themes"
+
 /*-------------------------------------------------------------------------*/
 
 const ListItems = () => {
@@ -141,6 +143,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginBottom: 10,
     fontSize: 20,
+    fontFamily:`${themes.itemFont}`
   },
   leftAction: {
     flex: 1,

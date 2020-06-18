@@ -18,6 +18,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 // Helpers
 import { replaceItemAtIndex } from "../services/helpers";
+import themes from "../services/themes"
+
 
 const MyBagPage = () => {
   const [items, setItems] = useRecoilState(itemsState);
@@ -72,7 +74,7 @@ const MyBagPage = () => {
       {empty ? (
         <Card style={styles.noItems}>
           <Text style={styles.noHeader}>Looks Like Your Bag Is Empty</Text>
-          <Text style={{ fontSize: 15, marginHorizontal: 25 }}>
+          <Text style={{ fontSize: 15, fontFamily: `${themes.itemFont}`, marginHorizontal: 25 }}>
             Tap the 'List' tab above and swipe right on an item to add it to
             your bag.
           </Text>
@@ -94,7 +96,7 @@ const MyBagPage = () => {
                 size={24}
                 color="#d4513f"
               />
-              <Text style={{color: "#d4513f", fontSize: 20, marginLeft: 5}}>
+              <Text style={{color: "#d4513f", fontSize: 20, fontFamily: `${themes.addFont}`, marginLeft: 5}}>
                 Empty
               </Text>
             </TouchableOpacity>
@@ -122,6 +124,7 @@ const styles = StyleSheet.create({
   },
   noHeader: {
     fontSize: 22,
+    fontFamily: `${themes.itemFont}`,
     fontWeight: "600",
     marginTop: 100,
     marginBottom: 40,

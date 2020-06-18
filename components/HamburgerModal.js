@@ -10,6 +10,8 @@ import {
 // EXPO
 import { BlurView } from "expo-blur";
 import { MaterialIcons, Feather } from "@expo/vector-icons";
+import themes from "../services/themes"
+
 
 const HamburgerToggleMenu = ({logOut}) => {
   const buttonSize = new Animated.Value(1);

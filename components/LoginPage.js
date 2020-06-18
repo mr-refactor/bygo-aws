@@ -13,6 +13,8 @@ import { useRecoilState } from "recoil";
 // EXPO ICONS
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import themes from "../services/themes"
+
 
 const initialState = { email: "", password: "" };
 
@@ -90,7 +92,7 @@ const LoginPage = ({ toggleLoggedIn }) => {
       </View>
       <View style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", alignItems:"center"}}>
         <View style={{ width: "30%", borderBottomWidth: 2, borderColor: "#fff" }}></View>
-        <Text style={{color: "#fff", fontSize: 15, margin: 10}}>Or connect with</Text>
+        <Text style={{color: "#fff", fontSize: 15, fontFamily: `${themes.itemFont}`, margin: 10}}>Or connect with</Text>
         <View style={{ width: "30%", borderBottomWidth: 2, borderColor: "#fff" }}></View>
       </View>
       <View style={styles.oAuthContainer}>
@@ -125,6 +127,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 50,
+    fontFamily: `${themes.navFont}`,
     color: "#fff",
     padding: 20,
   },
@@ -155,6 +158,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 20,
+    fontFamily: `${themes.addFont}`,
     color: "#fff",
   },
   oAuthContainer: {

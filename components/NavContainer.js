@@ -14,6 +14,7 @@ import ViewList from "./ViewList";
 // Navigation
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import themes from "../services/themes"
 
 /*-------------------------------------------------------------------------*/
 
@@ -40,6 +41,7 @@ const NavContainer = ({handleLogOut}) => {
           headerTitleStyle: {
             fontSize: 26,
             fontWeight: "bold",
+            fontFamily: `${themes.navFont}`
           },
           headerBackTitleVisible: false,
         }}

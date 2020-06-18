@@ -24,6 +24,8 @@ import { AntDesign } from "@expo/vector-icons";
 
 // helpers
 import { categories } from "../services/categoryDictionary";
+import themes from "../services/themes"
+
 
 const AddItemModal = ({ closeModal }) => {
   const [name, setName] = useState("");
@@ -142,6 +144,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "white",
     fontSize: 20,
+    fontFamily: `${themes.navFont}`,
     margin: 10,
   },
   input: {
@@ -149,6 +152,7 @@ const styles = StyleSheet.create({
     width: "80%",
     padding: 20,
     fontSize: 20,
+
     borderRadius: 10,
   },
   cancel: {
@@ -168,6 +172,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontSize: 20,
+    fontFamily: `${themes.addFont}`,
     marginLeft: 10,
   },
 });

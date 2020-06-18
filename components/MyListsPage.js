@@ -21,6 +21,8 @@ import ListIntro from "./ListIntro";
 
 // Helpers
 import pickColor from "../services/colorRandomizer";
+import themes from "../services/themes"
+
 
 /*-------------------------------------------------------------------------*/
 

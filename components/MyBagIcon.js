@@ -4,6 +4,8 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { itemsState } from '../atoms/itemsState'
 import {useRecoilValue} from 'recoil'
+import themes from "../services/themes"
+
 
 const MyBagFooter = ({ navigation}) => {
   const items = useRecoilValue(itemsState)
@@ -36,11 +38,13 @@ const styles = StyleSheet.create({
  
   label: {
     fontSize: 20,
+    fontFamily: `${themes.addFont}`,
     padding: 10,
     marginBottom: 20
   },
   icon: {
     fontSize: 26,
+    fontFamily: `${themes.itemFont}`,
     paddingBottom: 10,
     marginBottom: 20
   },

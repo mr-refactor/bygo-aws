@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 import { Card } from "react-native-shadow-cards";
 import { AntDesign } from "@expo/vector-icons";
+import themes from "../services/themes"
+
 
 const ItemsIntro = ({ handlePress }) => {
   return (
@@ -39,6 +41,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 30,
+    fontFamily: `${themes.addFont}`,
     margin: 20,
   },
   contentContainer: {
@@ -46,6 +49,7 @@ const styles = StyleSheet.create({
   },
   content: {
     fontSize: 20,
+    fontFamily: `${themes.itemFont}`,
     margin: 5,
   },
   addList: {

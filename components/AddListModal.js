@@ -23,6 +23,8 @@ import { AntDesign } from "@expo/vector-icons";
 
 // helpers
 import pickColor from "../services/colorRandomizer";
+import themes from "../services/themes"
+
 
 
 const AddListModal = ({ closeModal }) => {
@@ -109,6 +111,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "white",
     fontSize: 20,
+    fontFamily: `${themes.navFont}`,
     margin: 10,
   },
   input: {
@@ -134,6 +137,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
+    fontFamily: `${themes.addFont}`,
     fontSize: 20,
     marginLeft: 10,
   },

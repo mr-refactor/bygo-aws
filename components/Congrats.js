@@ -23,6 +23,8 @@ import { BlurView } from "expo-blur";
 // Helpers
 import { replaceItemAtIndex } from "../services/helpers";
 import { currentUserState } from "../atoms/currentUserState";
+import themes from "../services/themes"
+
 
 const Congrats = ({ navigation }) => {
   const [items, setItems] = useRecoilState(itemsState);
@@ -99,6 +101,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "white",
     fontSize: 20,
+    fontFamily: `${themes.navFont}`,
     margin: 10,
   },
   input: {
@@ -125,6 +128,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontSize: 20,
+    fontFamily: `${themes.addFont}`,
     marginLeft: 10,
   },
 });
