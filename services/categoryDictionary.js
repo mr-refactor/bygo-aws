@@ -136,16 +136,71 @@ export const categories = {
     wetsuit: "clothing",
     windbreaker: "clothing",
 
+    // Entertainment
+    ball: "entertainment",
+    balls: "entertainment",
+    cards: "entertainment",
+    cable: "entertainment",
+    cables: "entertainment",
+    controller: "entertainment",
+    controllers: "entertainment",
+    frisbee: "entertainment",
+    game: "entertainment",
+    games: "entertainment",
+    play: "entertainment",
+    ps: "entertainment",
+    switch: "entertainment",
+    "x-box": "entertainment",
+
+    // Essentials
+    
+    backpack: "essentials",
+    bag: "essentials",
+    bags: "essentials",
+    computer: "essentials",
+    charger: "essentials",
+    id: "essentials",
+    key: "essentials",
+    keys: "essentials",
+    mask: "essentials",
+    phone: "essentials",
+    purse: "essentials",
+    sunscreen: "essentials",
+    sanitizer: "essentials",
+    ticket: "essentials",
+    tickets: "essentials",
+    wallet: "essentials",
+    
+
     // Food
     apple: "food",
 
     bread: "food",
+    breakfast: "food",
     berries: "food",
-
+    chips: "food",
+    dinner: "food",
+    food: "food",
     fish: "food",
-
+    fruit: "food",
+    lunch: "food",
+    sandwiches: 'food',
     snacks: "food",
+    water: "food",
     
+    // Home
+    blanket: "home",
+    blankets: "home",
+    brush: "home",
+    pots: "home",
+    pans: "home",
+    toothbrush: "home",
+    tooth: "home",
+    toothpaste: "home",
+    towel: "home",
+    towels: "home",
+
+
     //TOOLS 
     
     axe: "tools",
@@ -170,6 +225,7 @@ export const categories = {
     knife: "tools",
     ladder: "tools",
     level: "tools",
+    leash: "tools",
     machete: "tools",
     mallet: "tools",
     measuring: "tools",
@@ -212,6 +268,8 @@ export const categories = {
 export const catIcons = {
     clothing: "tshirt-crew-outline",
     entertainment: "gamepad-variant-outline",
+    essentials: "star-outline",
+    home: "home-outline",
     food: "food-apple-outline",
     tools: "toolbox-outline",
     other: "information-outline"
@@ -220,6 +278,8 @@ export const catIcons = {
 export const catColors = {
     clothing: `${pickColor()}`,
     entertainment: `${pickColor()}`,
+    essentials: `${pickColor()}`,
+    home: `${pickColor()}`,
     food: `${pickColor()}`,
     tools: `${pickColor()}`,
     other: `${pickColor()}`
