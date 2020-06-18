@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Image, StyleSheet, Text, TextInput, View, Button } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+} from "react-native";
 
 // GRAPH QL
 import { API, graphqlOperation } from "aws-amplify";
@@ -12,25 +19,28 @@ import { useRecoilState } from "recoil";
 
 // EXPO ICONS
 import { AntDesign } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import themes from "../services/themes"
-
+import themes from "../services/themes";
 
 const initialState = { email: "", password: "" };
 
 const LoginPage = ({ toggleLoggedIn }) => {
   const [formState, setFormState] = useState(initialState);
+  const [showSub, setShowSub] = useState(false);
   const [currentUser, setCurrentUser] = useRecoilState(currentUserState);
 
   function setInput(key, value) {
     setFormState({ ...formState, [key]: value });
   }
 
+  function toggleShowSub() {
+    setShowSub((prev) => !prev);
+  }
+
   useEffect(() => {
     return () => {
       setFormState(initialState);
-    }
-  }, [])
+    };
+  }, []);
 
   async function addUser() {
     try {
@@ -63,7 +73,10 @@ const LoginPage = ({ toggleLoggedIn }) => {
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
-        <Text style={styles.header}>bygo</Text>
+        <TouchableOpacity onPress={toggleShowSub}>
+          <Text style={styles.header}>bygo</Text>
+        </TouchableOpacity>
+        {showSub && <Text style={styles.subHeader}>Before You Go Out</Text>}
         <View style={styles.inputContainer}>
           <TextInput
             onChangeText={(val) => setInput("email", val)}
@@ -90,13 +103,34 @@ const LoginPage = ({ toggleLoggedIn }) => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", alignItems:"center"}}>
-        <View style={{ width: "30%", borderBottomWidth: 2, borderColor: "#fff" }}></View>
-        <Text style={{color: "#fff", fontSize: 15, fontFamily: `${themes.itemFont}`, margin: 10}}>Or connect with</Text>
-        <View style={{ width: "30%", borderBottomWidth: 2, borderColor: "#fff" }}></View>
+      <View
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <View
+          style={{ width: "30%", borderBottomWidth: 2, borderColor: "#fff" }}
+        ></View>
+        <Text
+          style={{
+            color: "#fff",
+            fontSize: 15,
+            fontFamily: `${themes.itemFont}`,
+            margin: 10,
+          }}
+        >
+          Or connect with
+        </Text>
+        <View
+          style={{ width: "30%", borderBottomWidth: 2, borderColor: "#fff" }}
+        ></View>
       </View>
       <View style={styles.oAuthContainer}>
-        <TouchableOpacity style={{ margin: 20,  marginBottom: 40 }}>
+        <TouchableOpacity style={{ margin: 20, marginBottom: 40 }}>
           <Image
             source={require("../assets/facebookLogo.png")}
             style={styles.logo}
@@ -130,6 +164,12 @@ const styles = StyleSheet.create({
     fontFamily: `${themes.navFont}`,
     color: "#fff",
     padding: 20,
+  },
+  subHeader: {
+    fontSize: 20,
+    fontFamily: `${themes.addFont}`,
+    color: "#fff",
+    paddingBottom: 10,
   },
   inputContainer: {
     width: "90%",
@@ -171,7 +211,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 5,
     margin: 20,
-    marginBottom: 40
+    marginBottom: 40,
   },
   logo: {
     height: 60,
