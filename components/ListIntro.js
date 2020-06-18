@@ -23,7 +23,7 @@ const ListIntro = () => {
           </Text>
           <Text style={[styles.contentHeader, {marginVertical: 10}]}>Or</Text>
              
-          <Text style={styles.content}>You can tap the  <MaterialIcons name="menu" size={15} />  for more options </Text>
+          <Text style={styles.content}>You can always tap  <MaterialIcons name="menu" size={15} />  for more options </Text>
         </View>
       </Card>
     </>
@@ -41,11 +41,11 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 30,
-    marginVertical: 30,
+    marginVertical: 25,
     marginHorizontal: 5
   },
   contentContainer: {
-    margin: 10,
+    margin: 15,
   },
   contentHeader: {
     fontSize: 20,

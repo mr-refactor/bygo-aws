@@ -13,39 +13,58 @@ import { updateItem } from "../src/graphql/mutations";
 
 // Recoil
 import { currentListState } from "../atoms/currentListState";
-import { itemsState } from '../atoms/itemsState';
+import { itemsState } from "../atoms/itemsState";
+import { listsState } from "../atoms/listsState";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 // EXPO
 import { BlurView } from "expo-blur";
 
-const Congrats = ({navigation}) => {
-  const [items, setItems] = useRecoilState(itemsState)
+// Helpers
+import { replaceItemAtIndex } from "../services/helpers";
+import { currentUserState } from "../atoms/currentUserState";
+
+const Congrats = ({ navigation }) => {
+  const [items, setItems] = useRecoilState(itemsState);
+  const [lists, setLists] = useRecoilState(listsState);
   const currentList = useRecoilValue(currentListState);
 
   useEffect(() => {
+    return () => {
+      setLists((prev) =>
+        prev.map((l) => {
+          if (l.id === currentList.id) {
+            return { ...l, items: { items: items.map(i => ({...i, checked: false})) } };
+          }
+          return l;
+        })
+      );
+    };
+  }, []);
+
+  useEffect(() => {
     async function removeFromBag(item) {
-        try {
-          await API.graphql(
-            graphqlOperation(updateItem, {
-              input: {id: item.id, checked: false},
-            })
-          );
-        //   const index = items.findIndex(i => i.id === item.id)
-        //   const baggedItem = {...item, checked: false}
-        //   setItems([])
-        } catch (err) {
-          console.log("error checking item:", err);
-        }
+      try {
+        await API.graphql(
+          graphqlOperation(updateItem, {
+            input: { id: item.id, checked: false },
+          })
+        );
+        // const index = items.findIndex((i) => i.id === item.id);
+        // const baggedItem = { ...item, checked: false };
+        // setItems((prev) => replaceItemAtIndex(prev, index, baggedItem));
+      } catch (err) {
+        console.log("error checking item:", err);
       }
-      items.forEach(i => removeFromBag(i))
-  }, [])
+    }
+    items.forEach((i) => removeFromBag(i));
+  }, []);
 
   return (
     <BlurView intensity={85} style={styles.modalContainer}>
       <View style={styles.modal}>
         <Text style={styles.header}>Congrats!</Text>
-        <Text style={{color: "white"}} >You're All Set</Text>
+        <Text style={{ color: "white" }}>You're All Set</Text>
         <TouchableOpacity
           style={styles.addButton}
           onPress={() => navigation.navigate("My Lists")}
