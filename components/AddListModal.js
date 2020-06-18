@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -30,6 +30,12 @@ const AddListModal = ({ closeModal }) => {
   const currentUser = useRecoilValue(currentUserState);
   const [lists, setLists] = useRecoilState(listsState);
 
+  useEffect(() => {
+    return () => {
+      setTitle("");
+    }
+  }, [])
+
   async function addList() {
     try {
       const data = await API.graphql(
@@ -47,7 +53,6 @@ const AddListModal = ({ closeModal }) => {
         color: pickColor()
       };
       setLists((prev) => [...prev, newList]);
-      setTitle("");
     } catch (err) {
       console.log("error creating user:", err);
     }

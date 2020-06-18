@@ -18,7 +18,7 @@ import { updateItem } from "../src/graphql/mutations";
 // Recoil
 
 import { currentListState } from "../atoms/currentListState";
-import {listsState} from '../atoms/listsState'
+import { listsState } from "../atoms/listsState";
 import { itemsState } from "../atoms/itemsState";
 import { useRecoilState, useRecoilValue } from "recoil";
 
@@ -28,6 +28,8 @@ import { AntDesign } from "@expo/vector-icons";
 
 // Helpers
 import { replaceItemAtIndex } from "../services/helpers";
+import { catColors } from "../services/categoryDictionary";
+
 
 const BagItems = () => {
   const [items, setItems] = useRecoilState(itemsState);
@@ -44,14 +46,16 @@ const BagItems = () => {
       );
       const index = items.findIndex((i) => i.id === item.id);
       const baggedItem = { ...item, checked: false };
-      const newItemsArr = replaceItemAtIndex(items, index, baggedItem)
+      const newItemsArr = replaceItemAtIndex(items, index, baggedItem);
       setItems(newItemsArr);
-      setLists(prev => prev.map(l => {
-        if (l.id === currentList.id) {
-          return {...l, items: {items: newItemsArr} }
-        }
-        return l
-      }))
+      setLists((prev) =>
+        prev.map((l) => {
+          if (l.id === currentList.id) {
+            return { ...l, items: { items: newItemsArr } };
+          }
+          return l;
+        })
+      );
     } catch (err) {
       console.log("error checking item:", err);
     }
@@ -70,7 +74,9 @@ const BagItems = () => {
         )}
         onSwipeableRightOpen={() => removeFromBag(item)}
       >
-        <Card style={styles.li}>
+        <Card
+          style={[styles.li, { borderLeftColor: catColors[item.category] }]}
+        >
           <AntDesign name="checkcircleo" size={26} color="green" />
           <Text style={styles.text}>{item.name}</Text>
         </Card>
@@ -81,7 +87,7 @@ const BagItems = () => {
   return (
     <SafeAreaView style={styles.listContainer}>
       <FlatList
-        data={itemsInBag}
+        data={itemsInBag.sort((a, b) => (a.category > b.category ? 1 : -1))}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />

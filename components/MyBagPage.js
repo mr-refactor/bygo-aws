@@ -78,26 +78,28 @@ const MyBagPage = () => {
             your bag.
           </Text>
           <MaterialCommunityIcons
-              style={{marginVertical: 50}}
-              name="bag-personal-outline"
-              size={150}
-              color="rgba(0, 0, 0, 0.8)"
-            />
+            style={{ marginVertical: 50 }}
+            name="bag-personal-outline"
+            size={150}
+            color="rgba(0, 0, 0, 0.8)"
+          />
         </Card>
       ) : (
         <>
           <BagItems />
-          <TouchableOpacity style={styles.empty} onPress={emptyBag}>
-            <MaterialCommunityIcons
-              style={styles.emptyBagIcon}
-              name="bag-personal-outline"
-              size={35}
-              color="white"
-            />
-            <Text style={{ color: "#000", fontSize: 24, fontWeight: "500" }}>
-              Empty
-            </Text>
-          </TouchableOpacity>
+          <Card style={styles.empty}>
+            <TouchableOpacity  onPress={emptyBag}>
+              <MaterialCommunityIcons
+                style={styles.emptyBagIcon}
+                name="bag-personal-outline"
+                size={35}
+                color="white"
+              />
+              <Text style={{ color: "#000", fontSize: 24, fontWeight: "500" }}>
+                Empty
+              </Text>
+            </TouchableOpacity>
+          </Card>
         </>
       )}
     </View>

@@ -33,16 +33,13 @@ const AddItemModal = ({ closeModal }) => {
   const [items, setItems] = useRecoilState(itemsState);
   const currentList = useRecoilValue(currentListState);
 
-  // useEffect(() => {
-  //   return () => {
-  //     setLists(prev => prev.map(l => {
-  //       if (l.id === currentList.id) {
-  //         return {...l, items: {items: [...items]} }
-  //       }
-  //       return l
-  //     }))
-  //   }
-  // }, [])
+  useEffect(() => {
+    return () => {
+      setName('')
+    }
+  }, [])
+
+
 
   async function addItem() {
     const itemToAdd = {
@@ -126,6 +123,7 @@ const styles = StyleSheet.create({
   modalContainer: {
     position: "absolute",
     flex: 1,
+    justifyContent: "center",
     alignItems: "center",
     height: "100%",
     width: "100%",
