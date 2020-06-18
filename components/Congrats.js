@@ -66,7 +66,7 @@ const Congrats = ({ navigation }) => {
     <BlurView intensity={85} style={styles.modalContainer}>
       <View style={styles.modal}>
         <Text style={styles.header}>Congrats!</Text>
-        <Text style={{ color: "white" }}>You're All Set</Text>
+        <Text style={styles.text}>You're All Set</Text>
         <TouchableOpacity
           style={styles.addButton}
           onPress={() => navigation.navigate("My Lists")}
@@ -100,28 +100,24 @@ const styles = StyleSheet.create({
   header: {
     textAlign: "center",
     color: "white",
-    fontSize: 20,
+    fontSize: 28,
     fontFamily: `${themes.navFont}`,
-    margin: 10,
+    fontWeight: "600",
+    marginTop: 20,
+    marginBottom: 5
   },
-  input: {
-    backgroundColor: "white",
-    width: "80%",
-    padding: 20,
+  text: {
+    color: "#fff",
+    padding: 10,
     fontSize: 20,
-    borderRadius: 10,
-  },
-  cancel: {
-    position: "absolute",
-    left: 5,
-    top: 5,
+
   },
   addButton: {
     display: "flex",
     flexDirection: "row",
-    backgroundColor: "green",
+    backgroundColor: "#25db37",
     width: "60%",
-    margin: 20,
+    marginTop: 25,
     padding: 20,
     borderRadius: 10,
   },
@@ -129,7 +125,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     fontFamily: `${themes.addFont}`,
-    marginLeft: 10,
+    marginLeft: 9
   },
 });
 

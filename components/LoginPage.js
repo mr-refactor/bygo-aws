@@ -5,7 +5,8 @@ import {
   Text,
   TextInput,
   View,
-  TouchableOpacity,
+  TouchableHighlight,
+  TouchableOpacity
 } from "react-native";
 
 // GRAPH QL
@@ -120,6 +121,7 @@ const LoginPage = ({ toggleLoggedIn }) => {
             color: "#fff",
             fontSize: 15,
             fontFamily: `${themes.itemFont}`,
+            fontWeight: "400",
             margin: 10,
           }}
         >

@@ -95,7 +95,7 @@ const AddItemModal = ({ closeModal }) => {
     <BlurView intensity={80} style={styles.modalContainer}>
       <View style={styles.modal}>
         <TouchableOpacity style={styles.cancel} onPress={closeModal}>
-          <Feather name="x" size={24} color="white" />
+          <Feather name="x" size={28} color="white" />
         </TouchableOpacity>
         <Text style={styles.header}>New Item</Text>
         <TextInput
@@ -143,9 +143,10 @@ const styles = StyleSheet.create({
   header: {
     textAlign: "center",
     color: "white",
-    fontSize: 20,
+    fontSize: 24,
     fontFamily: `${themes.navFont}`,
-    margin: 10,
+    marginTop: 10,
+    marginBottom: 15
   },
   input: {
     backgroundColor: "white",
@@ -157,8 +158,8 @@ const styles = StyleSheet.create({
   },
   cancel: {
     position: "absolute",
-    left: 5,
-    top: 5,
+    left: 10,
+    top: 10,
   },
   addButton: {
     display: "flex",
@@ -166,7 +167,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#25db37",
     width: "60%",
     margin: 20,
-    padding: 20,
+    padding: 15,
     borderRadius: 10,
   },
   buttonText: {
