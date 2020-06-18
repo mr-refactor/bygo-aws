@@ -88,14 +88,14 @@ const MyBagPage = () => {
         <>
           <BagItems />
           <Card style={styles.empty}>
-            <TouchableOpacity  onPress={emptyBag}>
+            <TouchableOpacity onPress={emptyBag} style={styles.emptyTouch}>
               <MaterialCommunityIcons
                 style={styles.emptyBagIcon}
-                name="bag-personal-outline"
-                size={35}
-                color="white"
+                name="bag-personal-off-outline"
+                size={24}
+                color="#d4513f"
               />
-              <Text style={{ color: "#000", fontSize: 24, fontWeight: "500" }}>
+              <Text style={{color: "#d4513f", fontSize: 20, marginLeft: 5}}>
                 Empty
               </Text>
             </TouchableOpacity>
@@ -133,22 +133,22 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   empty: {
-    position: "relative",
     display: "flex",
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
+    width: "30%",
+    height: "10%",
     borderRadius: 20,
-    backgroundColor: "#ff5d3d",
-    marginVertical: 20,
+    backgroundColor: "#fff",
+    marginBottom: 20
   },
-  emptyBagIcon: {
-    position: "absolute",
-    top: 65,
-    left: 85,
-    transform: [{ translateX: -50 }, { translateY: -50 }],
-    opacity: 0.4,
-  },
+  emptyTouch: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
+  }
 });
 
 export default MyBagPage;
