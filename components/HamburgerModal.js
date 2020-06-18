@@ -11,7 +11,7 @@ import {
 import { BlurView } from "expo-blur";
 import { MaterialIcons, Feather } from "@expo/vector-icons";
 
-const HamburgerToggleMenu = () => {
+const HamburgerToggleMenu = ({logOut}) => {
   const buttonSize = new Animated.Value(1);
   const mode = new Animated.Value(0);
   function handlePress() {
@@ -89,7 +89,7 @@ const HamburgerToggleMenu = () => {
         <Animated.View
           style={{ position: "absolute", left: logOutX, top: logOutY }}
         >
-          <TouchableOpacity style={styles.secondaryButton}>
+          <TouchableOpacity style={styles.secondaryButton} onPress={logOut}>
             <Feather name="log-out" size={26} color="black" />
           </TouchableOpacity>
         </Animated.View>
