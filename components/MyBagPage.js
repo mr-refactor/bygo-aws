@@ -12,7 +12,7 @@ import { currentListState } from "../atoms/currentListState";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 // Components
-
+import { Card } from "react-native-shadow-cards";
 import BagItems from "./BagItems";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -26,13 +26,15 @@ const MyBagPage = () => {
   const [empty, setEmpty] = useState(false);
 
   useEffect(() => {
-      setLists(prev => prev.map(l => {
+    setLists((prev) =>
+      prev.map((l) => {
         if (l.id === currentList.id) {
-          return {...l, items: {items} }
+          return { ...l, items: { items } };
         }
-        return l
-      }))
-    }, [items])
+        return l;
+      })
+    );
+  }, [items]);
 
   function emptyBag() {
     items.forEach((item) => removeFromBag(item));
@@ -60,7 +62,7 @@ const MyBagPage = () => {
       );
       const index = items.findIndex((i) => i.id === item.id);
       const baggedItem = { ...item, checked: false };
-      setItems(prev => replaceItemAtIndex(prev, index, baggedItem));
+      setItems((prev) => replaceItemAtIndex(prev, index, baggedItem));
     } catch (err) {
       console.log("error checking item:", err);
     }
@@ -69,9 +71,19 @@ const MyBagPage = () => {
   return (
     <View style={styles.container}>
       {empty ? (
-        <View style={styles.noItems}>
-          <Text>Your Bag is Empty</Text>
-        </View>
+        <Card style={styles.noItems}>
+          <Text style={styles.noHeader}>Looks Like Your Bag Is Empty</Text>
+          <Text style={{ fontSize: 15, marginHorizontal: 25 }}>
+            Tap the 'List' tab above and swipe right on an item to add it to
+            your bag.
+          </Text>
+          <MaterialCommunityIcons
+              style={{marginVertical: 50}}
+              name="bag-personal-outline"
+              size={150}
+              color="rgba(0, 0, 0, 0.8)"
+            />
+        </Card>
       ) : (
         <>
           <BagItems />
@@ -95,15 +107,23 @@ const MyBagPage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    width: "100%",
+    backgroundColor: "#f5f5f5",
     alignItems: "center",
     justifyContent: "flex-start",
   },
   noItems: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
+    marginVertical: 20,
     backgroundColor: "#fff",
+  },
+  noHeader: {
+    fontSize: 22,
+    fontWeight: "600",
+    marginTop: 100,
+    marginBottom: 40,
   },
   button: {
     flex: 1,
@@ -124,11 +144,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 65,
     left: 85,
-    transform: [
-      {translateX: -50},
-      {translateY: -50}
-    ],
-    opacity: 0.4
+    transform: [{ translateX: -50 }, { translateY: -50 }],
+    opacity: 0.4,
   },
 });
 

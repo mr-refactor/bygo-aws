@@ -59,13 +59,13 @@ const MyListsPage = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {console.log(lists)}
       {lists.length <= 0 ? (
         <ListIntro />
       ) : (
         <>
           <SearchBar
             containerStyle={styles.searchBar}
+            // cancelButtonProps={{disabled: true}}
             lightTheme={true}
             platform="ios"
             placeholder="Search"
@@ -111,6 +111,10 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 100,
     backgroundColor: "#25db37",
+    shadowColor: "#000",
+    shadowRadius: 5,
+    shadowOffset: {height: 10},
+    shadowOpacity: 0.5
   },
 });
 

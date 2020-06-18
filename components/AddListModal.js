@@ -46,7 +46,6 @@ const AddListModal = ({ closeModal }) => {
         },
         color: pickColor()
       };
-      console.log(newList)
       setLists((prev) => [...prev, newList]);
       setTitle("");
     } catch (err) {
