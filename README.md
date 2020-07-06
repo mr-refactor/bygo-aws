@@ -56,6 +56,7 @@ Make sure you have [npm installed](https://www.npmjs.com/get-npm) on your local 
 
 **Colaborators**<br />
 [Buford Eeds](https://www.linkedin.com/in/bufordeeds/)
+<br />
 [Adam Age](https://www.linkedin.com/in/errorsyntax/)
 
 *Special thanks to all the Flatiron staff who helped me along the way*
