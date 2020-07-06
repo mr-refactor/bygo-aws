@@ -42,8 +42,8 @@ I built this app due to my constant lack of organization. I always forget at lea
 Make sure you have [npm installed](https://www.npmjs.com/get-npm) on your local machine.
 
 * Clone this repository
-* Navigate to the directory and run `<npm i>`
-* Run `<npm start>`
+* Navigate to the directory and run `npm i`
+* Run `npm start`
 
 
 ## Credits
