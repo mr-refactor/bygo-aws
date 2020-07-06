@@ -12,6 +12,7 @@ I built this app due to my constant lack of organization. I always forget at lea
 ## Technology
 
 * React Native
+* Expo Library
 * AWS Amplify
   * DynamoDB
   * GraphQL
@@ -35,3 +36,27 @@ I built this app due to my constant lack of organization. I always forget at lea
 * Once all the items have been checked off the list, the user will be redirected to the My List Page and the items will be added back to the list for later use
 
 ![List](/assets/ListPage.png)
+
+## Installation
+
+Make sure you have [npm installed](https://www.npmjs.com/get-npm) on your local machine.
+
+* Clone this repository
+* Navigate to the directory and run `<npm i>`
+* Run `<npm start>`
+
+
+## Credits
+
+**Project Manager / Software Engineer**
+[Robert Collins](https://www.linkedin.com/in/rpc219/)
+
+**UX Designer**
+[Sam Jaklich](https://samjaklich.com/)
+
+**Colaborators**
+[Buford Eeds](https://www.linkedin.com/in/bufordeeds/)
+[Adam Age](https://www.linkedin.com/in/errorsyntax/)
+
+**Special thanks to all the Flatiron staff who helped me along the way**
+
