@@ -48,15 +48,16 @@ Make sure you have [npm installed](https://www.npmjs.com/get-npm) on your local 
 
 ## Credits
 
-**Project Manager / Software Engineer**
+**Project Manager / Software Engineer**<br />
 [Robert Collins](https://www.linkedin.com/in/rpc219/)
 
-**UX Designer**
+**UX Designer**<br />
 [Sam Jaklich](https://samjaklich.com/)
 
-**Colaborators**
+**Colaborators**<br />
 [Buford Eeds](https://www.linkedin.com/in/bufordeeds/)
 [Adam Age](https://www.linkedin.com/in/errorsyntax/)
 
-**Special thanks to all the Flatiron staff who helped me along the way**
+<br />
+*Special thanks to all the Flatiron staff who helped me along the way*
 
